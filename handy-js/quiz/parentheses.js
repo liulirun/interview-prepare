@@ -11,6 +11,7 @@
  */
 
 function isBalancedBest(s) {
+  // Step 1 (BEST): prepare stack and bracket mappings.
   const stack = [];
   const closeToOpen = {
     ")": "(",
@@ -19,6 +20,7 @@ function isBalancedBest(s) {
   };
   const opening = new Set(["(", "{", "["]);
 
+  // Step 2 (BEST): push opening brackets, validate on closing brackets.
   for (const ch of s) {
     if (opening.has(ch)) {
       stack.push(ch);
@@ -29,19 +31,22 @@ function isBalancedBest(s) {
     }
   }
 
+  // Step 3 (BEST): valid only if no unmatched opening brackets remain.
   return stack.length === 0;
 }
 
 function isBalancedEasy(s) {
+  // Step 1 (EASY): repeatedly remove direct pairs.
   let current = s;
 
-  // Keep removing direct valid pairs.
+  // Step 2 (EASY): stop when no reduction occurs.
   while (true) {
     const next = current.replaceAll("()", "").replaceAll("{}", "").replaceAll("[]", "");
     if (next.length === current.length) break;
     current = next;
   }
 
+  // Step 3 (EASY): empty result means balanced.
   return current.length === 0;
 }
 

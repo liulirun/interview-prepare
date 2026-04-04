@@ -1,11 +1,14 @@
 # Frequent Quiz Summary
 
-## 1) Minimum Window Substring
+## 1) Minimum Window Substring - HARD
 **Question**  
 Given two strings `s` and `t`, return the smallest substring in `s` that contains every character in `t` (including duplicates).
 
 ### [AI-BEST:]
-Use a sliding window with two maps: required counts from `t` and current counts in the window. Expand right pointer, and once valid, shrink from left to keep the smallest valid window.
+- Step 1: Build a required frequency map from `t`.
+- Step 2: Expand a sliding window with a right pointer over `s`.
+- Step 3: When all required chars are satisfied, shrink from the left.
+- Step 4: Track and return the smallest valid window.
 
 [AI-ANALYZE:]
 - Time: `O(n + m)` where `n = s.length`, `m = t.length`.
@@ -13,7 +16,9 @@ Use a sliding window with two maps: required counts from `t` and current counts 
 - Tradeoff: Slightly harder logic, but best real-world performance.
 
 ### [AI-EASY:]
-Generate all substrings, check whether each covers all chars in `t`, and keep the shortest valid one.
+- Step 1: Generate every possible substring of `s`.
+- Step 2: For each substring, check if it covers all chars in `t`.
+- Step 3: Keep the shortest valid substring.
 
 [AI-ANALYZE:]
 - Time: up to `O(n^3)` naive.
@@ -27,7 +32,9 @@ Generate all substrings, check whether each covers all chars in `t`, and keep th
 Convert `aabcccccaaa` into `a2b1c5a3`, and return original string if compressed result is not shorter.
 
 ### [AI-BEST:]
-Scan once, count consecutive repeated chars, append `char + count` to a list/builder, join once at the end, then compare lengths.
+- Step 1: Scan the string once and count repeated consecutive chars.
+- Step 2: Append `char + count` to a list/builder.
+- Step 3: Join once at the end and compare lengths.
 
 [AI-ANALYZE:]
 - Time: `O(n)`.
@@ -35,7 +42,9 @@ Scan once, count consecutive repeated chars, append `char + count` to a list/bui
 - Tradeoff: Slightly more code, but stable and scalable.
 
 ### [AI-EASY:]
-Use the same counting idea, but concatenate directly into a result string on each step.
+- Step 1: Scan and count repeated consecutive chars.
+- Step 2: Concatenate `char + count` directly into the result string each time.
+- Step 3: Return shorter between compressed and original.
 
 [AI-ANALYZE:]
 - Time: can degrade to `O(n^2)` due to repeated string reallocation.
@@ -49,7 +58,9 @@ Use the same counting idea, but concatenate directly into a result string on eac
 Return the index of the first character that appears exactly once; return `-1` if none.
 
 ### [AI-BEST:]
-Do two passes: first build frequency map, second scan original string and return first index with count `1`.
+- Step 1: Build a frequency map of all characters.
+- Step 2: Scan string from left to right.
+- Step 3: Return first index whose count is `1`.
 
 [AI-ANALYZE:]
 - Time: `O(n)`.
@@ -57,7 +68,8 @@ Do two passes: first build frequency map, second scan original string and return
 - Tradeoff: Best balance of clarity and performance.
 
 ### [AI-EASY:]
-For each character, scan the full string to count occurrences; return first index whose count is `1`.
+- Step 1: For each character, scan full string to count occurrences.
+- Step 2: Return first index whose count is `1`.
 
 [AI-ANALYZE:]
 - Time: `O(n^2)`.
@@ -71,7 +83,9 @@ For each character, scan the full string to count occurrences; return first inde
 Find the longest substring that reads the same forward and backward.
 
 ### [AI-BEST:]
-Use Manacher's algorithm to compute palindrome radii in linear time.
+- Step 1: Transform the string into Manacher format to unify centers.
+- Step 2: Compute palindrome radius at each index.
+- Step 3: Track max radius and map it back to original string indices.
 
 [AI-ANALYZE:]
 - Time: `O(n)`.
@@ -79,7 +93,9 @@ Use Manacher's algorithm to compute palindrome radii in linear time.
 - Tradeoff: Optimal performance, but high implementation complexity and bug risk.
 
 ### [AI-EASY:]
-Expand around each center (odd and even), grow while chars match, and track the longest palindrome.
+- Step 1: Treat each index as odd center and each gap as even center.
+- Step 2: Expand while left/right chars match.
+- Step 3: Track the longest palindrome found.
 
 [AI-ANALYZE:]
 - Time: `O(n^2)`.
@@ -93,7 +109,9 @@ Expand around each center (odd and even), grow while chars match, and track the 
 Return the longest substring with no repeated characters.
 
 ### [AI-BEST:]
-Use sliding window with a map of last seen index. On duplicate inside the window, move left pointer past the previous duplicate index.
+- Step 1: Keep a sliding window and a map of last seen index per char.
+- Step 2: If duplicate is inside current window, move left pointer.
+- Step 3: Update best window bounds when a longer window appears.
 
 [AI-ANALYZE:]
 - Time: `O(n)`.
@@ -101,7 +119,9 @@ Use sliding window with a map of last seen index. On duplicate inside the window
 - Tradeoff: Standard high-performance solution for production and interviews.
 
 ### [AI-EASY:]
-Maintain current window string, detect duplicates with `indexOf`, slice window when duplicate appears, and continue.
+- Step 1: Keep a current window string.
+- Step 2: Use `indexOf` to detect duplicates.
+- Step 3: Slice window after duplicate and continue.
 
 [AI-ANALYZE:]
 - Time: can degrade to `O(n^2)`.
@@ -115,7 +135,9 @@ Maintain current window string, detect duplicates with `indexOf`, slice window w
 Check whether `()`, `{}`, and `[]` are balanced and correctly nested.
 
 ### [AI-BEST:]
-Use a stack: push opening brackets, pop and validate on closing brackets, and ensure stack is empty at the end.
+- Step 1: Push opening brackets to a stack.
+- Step 2: On closing bracket, pop and validate type.
+- Step 3: Return valid only if stack is empty at end.
 
 [AI-ANALYZE:]
 - Time: `O(n)`.
@@ -123,7 +145,9 @@ Use a stack: push opening brackets, pop and validate on closing brackets, and en
 - Tradeoff: Industry-standard and robust parser pattern.
 
 ### [AI-EASY:]
-Repeatedly remove `()`, `{}`, and `[]` pairs until no more changes; valid if final string is empty.
+- Step 1: Repeatedly remove `()`, `{}`, and `[]` pairs.
+- Step 2: Stop when no change happens.
+- Step 3: If string is empty, it is balanced.
 
 [AI-ANALYZE:]
 - Time: usually `O(n^2)` or worse.
@@ -137,7 +161,9 @@ Repeatedly remove `()`, `{}`, and `[]` pairs until no more changes; valid if fin
 Design parking logic where vehicle types require different spot counts (for example, truck needs 3 contiguous spots).
 
 ### [AI-BEST:]
-Track free contiguous intervals and allocate from interval structures. On park/unpark, split and merge intervals.
+- Step 1: Track free space as contiguous intervals.
+- Step 2: On park, allocate from a large enough interval and split it.
+- Step 3: On unpark, insert released interval and merge neighbors.
 
 [AI-ANALYZE:]
 - Time: often around `O(log n)` per operation (depends on structure).
@@ -145,7 +171,9 @@ Track free contiguous intervals and allocate from interval structures. On park/u
 - Tradeoff: Higher implementation complexity, better at scale.
 
 ### [AI-EASY:]
-Represent lot as array; linearly scan for contiguous free segment of required size and fill it.
+- Step 1: Represent lot as an array of spots.
+- Step 2: Linearly scan for contiguous free block.
+- Step 3: Fill that block with vehicle ID.
 
 [AI-ANALYZE:]
 - Time: `O(n)` park in worst case.
@@ -182,7 +210,9 @@ Represent lot as array; linearly scan for contiguous free segment of required si
 Given an array of integers and a target, return indices of two numbers that add up to target.
 
 ### [AI-BEST:]
-Scan once with a hash map of `value -> index`. For each number, check if `target - current` already exists in the map; if yes, return the pair.
+- Step 1: Iterate once and store `value -> index` in map.
+- Step 2: For each value, check if complement `target - value` exists.
+- Step 3: Return matching pair immediately.
 
 [AI-ANALYZE:]
 - Time: `O(n)`.
@@ -190,7 +220,8 @@ Scan once with a hash map of `value -> index`. For each number, check if `target
 - Tradeoff: Fast and standard; uses extra memory.
 
 ### [AI-EASY:]
-Use nested loops and test every pair until sum equals target.
+- Step 1: Try every pair with nested loops.
+- Step 2: Return first pair that sums to target.
 
 [AI-ANALYZE:]
 - Time: `O(n^2)`.
@@ -204,7 +235,9 @@ Use nested loops and test every pair until sum equals target.
 Given two strings, determine whether one is an anagram of the other.
 
 ### [AI-BEST:]
-If lengths differ, return false. Build character frequency counts from first string, decrement using second string, and verify all counts end at zero.
+- Step 1: If lengths differ, return false.
+- Step 2: Count chars in first string.
+- Step 3: Decrement counts with second string and verify all zero.
 
 [AI-ANALYZE:]
 - Time: `O(n)`.
@@ -212,7 +245,8 @@ If lengths differ, return false. Build character frequency counts from first str
 - Tradeoff: Efficient and robust for large strings.
 
 ### [AI-EASY:]
-Sort both strings and compare the sorted results.
+- Step 1: Sort both strings.
+- Step 2: Compare sorted outputs.
 
 [AI-ANALYZE:]
 - Time: `O(n log n)`.
@@ -226,7 +260,9 @@ Sort both strings and compare the sorted results.
 Given intervals `[start, end]`, merge all overlapping intervals.
 
 ### [AI-BEST:]
-Sort intervals by start time, then iterate once, merging into a result list when overlap exists.
+- Step 1: Sort intervals by start.
+- Step 2: Sweep once and merge overlaps into result.
+- Step 3: Append non-overlapping intervals directly.
 
 [AI-ANALYZE:]
 - Time: `O(n log n)` because of sorting.
@@ -234,7 +270,9 @@ Sort intervals by start time, then iterate once, merging into a result list when
 - Tradeoff: Standard production approach and easy to maintain.
 
 ### [AI-EASY:]
-Repeatedly compare every interval pair and merge overlaps until no more changes happen.
+- Step 1: Compare interval pairs for overlap.
+- Step 2: Merge any overlapping pair.
+- Step 3: Repeat passes until no changes happen.
 
 [AI-ANALYZE:]
 - Time: can be `O(n^2)` or worse depending on repeated passes.
@@ -248,7 +286,9 @@ Repeatedly compare every interval pair and merge overlaps until no more changes 
 Given an array, return the `k` most frequent elements.
 
 ### [AI-BEST:]
-Count with hash map, then use bucket sort by frequency (array of lists indexed by frequency), and collect from highest bucket down until `k` elements.
+- Step 1: Build value frequency map.
+- Step 2: Place values into buckets by frequency.
+- Step 3: Collect from highest-frequency bucket down until `k` values.
 
 [AI-ANALYZE:]
 - Time: `O(n)` average.
@@ -256,7 +296,9 @@ Count with hash map, then use bucket sort by frequency (array of lists indexed b
 - Tradeoff: Excellent performance, slightly more setup code.
 
 ### [AI-EASY:]
-Count with hash map, convert to list of pairs, sort by frequency descending, then take first `k`.
+- Step 1: Build value frequency map.
+- Step 2: Convert to pairs and sort by frequency descending.
+- Step 3: Take first `k` values.
 
 [AI-ANALYZE:]
 - Time: `O(n log n)` from sorting.
@@ -270,7 +312,9 @@ Count with hash map, convert to list of pairs, sort by frequency descending, the
 Given a sorted array and target, return the first index of target, else `-1`.
 
 ### [AI-BEST:]
-Use modified binary search: when `mid == target`, store answer and continue searching left half to find earliest occurrence.
+- Step 1: Run binary search.
+- Step 2: On match, store answer and continue left half.
+- Step 3: Return stored leftmost answer.
 
 [AI-ANALYZE:]
 - Time: `O(log n)`.
@@ -278,7 +322,9 @@ Use modified binary search: when `mid == target`, store answer and continue sear
 - Tradeoff: Fast and interview-classic; off-by-one bugs are the main risk.
 
 ### [AI-EASY:]
-Use normal binary search to find any occurrence, then linearly move left to first position.
+- Step 1: Run normal binary search to find any match.
+- Step 2: Move left linearly while value is still target.
+- Step 3: Return that first index.
 
 [AI-ANALYZE:]
 - Time: `O(log n + m)` where `m` is duplicate run length; worst case `O(n)`.

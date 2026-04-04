@@ -11,11 +11,13 @@
  */
 
 function longestSubstringBest(s) {
+  // Step 1 (BEST): initialize sliding window state.
   let left = 0;
   let bestStart = 0;
   let bestLen = 0;
   const lastSeen = new Map();
 
+  // Step 2 (BEST): expand right pointer and shift left on in-window duplicates.
   for (let right = 0; right < s.length; right++) {
     const ch = s[right];
     if (lastSeen.has(ch) && (lastSeen.get(ch) ?? -1) >= left) {
@@ -34,9 +36,11 @@ function longestSubstringBest(s) {
 }
 
 function longestSubstringEasy(s) {
+  // Step 1 (EASY): keep mutable current window string.
   let currentWindow = "";
   let longestFound = "";
 
+  // Step 2 (EASY): if duplicate appears, slice window after duplicate index.
   for (const ch of s) {
     const duplicateIndex = currentWindow.indexOf(ch);
     if (duplicateIndex >= 0) {
@@ -44,6 +48,7 @@ function longestSubstringEasy(s) {
     } else {
       currentWindow += ch;
     }
+    // Step 3 (EASY): track best window.
     if (currentWindow.length > longestFound.length) {
       longestFound = currentWindow;
     }

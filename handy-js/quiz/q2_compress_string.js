@@ -11,11 +11,13 @@
  */
 
 function compressStringBest(s) {
+  // Step 1 (BEST): fast exit for empty input.
   if (!s) return "";
 
   const chunks = [];
   let count = 1;
 
+  // Step 2 (BEST): scan once and build chunk list.
   for (let i = 1; i <= s.length; i++) {
     if (i < s.length && s[i] === s[i - 1]) {
       count++;
@@ -25,16 +27,19 @@ function compressStringBest(s) {
     }
   }
 
+  // Step 3 (BEST): join once and return the shorter representation.
   const compressed = chunks.join("");
   return compressed.length < s.length ? compressed : s;
 }
 
 function compressStringEasy(s) {
+  // Step 1 (EASY): fast exit for empty input.
   if (!s) return "";
 
   let result = "";
   let count = 1;
 
+  // Step 2 (EASY): same run-length logic using direct concatenation.
   for (let i = 1; i <= s.length; i++) {
     if (i < s.length && s[i] === s[i - 1]) {
       count++;
@@ -44,6 +49,7 @@ function compressStringEasy(s) {
     }
   }
 
+  // Step 3 (EASY): return shorter between compressed and original.
   return result.length < s.length ? result : s;
 }
 

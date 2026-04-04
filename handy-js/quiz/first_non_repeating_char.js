@@ -11,11 +11,13 @@
  */
 
 function firstUniqueCharIndexBest(input) {
+  // Step 1 (BEST): build frequency map.
   const counts = new Map();
   for (const ch of input) {
     counts.set(ch, (counts.get(ch) ?? 0) + 1);
   }
 
+  // Step 2 (BEST): return first index with count 1.
   for (let i = 0; i < input.length; i++) {
     if ((counts.get(input[i]) ?? 0) === 1) return i;
   }
@@ -23,11 +25,13 @@ function firstUniqueCharIndexBest(input) {
 }
 
 function firstUniqueCharIndexEasy(input) {
+  // Step 1 (EASY): for each char, count by scanning full string.
   for (let i = 0; i < input.length; i++) {
     let count = 0;
     for (let j = 0; j < input.length; j++) {
       if (input[i] === input[j]) count++;
     }
+    // Step 2 (EASY): first unique char index wins.
     if (count === 1) return i;
   }
   return -1;

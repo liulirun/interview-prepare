@@ -11,10 +11,11 @@
  */
 
 function longestPalindromeBest(s) {
+  // Step 1 (BEST): handle empty input.
   if (!s) return "";
 
-  // Transform: "abba" -> "^#a#b#b#a#$"
-  // This unifies odd/even palindromes into one format.
+  // Step 2 (BEST): transform string to unify odd/even palindromes.
+  // Example: "abba" -> "^#a#b#b#a#$"
   const transformed = ["^"];
   for (const ch of s) {
     transformed.push("#", ch);
@@ -26,6 +27,7 @@ function longestPalindromeBest(s) {
   let center = 0;
   let right = 0;
 
+  // Step 3 (BEST): compute palindrome radius at every center.
   for (let i = 1; i < t.length - 1; i++) {
     const mirror = 2 * center - i;
     if (i < right) {
@@ -42,6 +44,7 @@ function longestPalindromeBest(s) {
     }
   }
 
+  // Step 4 (BEST): extract max radius and convert back to original indices.
   let maxLen = 0;
   let centerIndex = 0;
   for (let i = 1; i < p.length - 1; i++) {
@@ -56,9 +59,11 @@ function longestPalindromeBest(s) {
 }
 
 function longestPalindromeEasy(s) {
+  // Step 1 (EASY): handle empty input.
   if (!s) return "";
   let best = "";
 
+  // Step 2 (EASY): expand around every odd and even center.
   for (let i = 0; i < s.length; i++) {
     const odd = expandAroundCenter(s, i, i);
     const even = expandAroundCenter(s, i, i + 1);
@@ -69,13 +74,16 @@ function longestPalindromeEasy(s) {
   return best;
 }
 
+// AI-EASY-HELPER
 function expandAroundCenter(s, left, right) {
+  // Step 1 (EASY-HELPER): move outward while chars match.
   let l = left;
   let r = right;
   while (l >= 0 && r < s.length && s[l] === s[r]) {
     l--;
     r++;
   }
+  // Step 2 (EASY-HELPER): boundaries moved one step too far, so fix slice.
   return s.slice(l + 1, r);
 }
 
