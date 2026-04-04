@@ -2,11 +2,11 @@
 
 Practical, interview-ready operations by type:
 
-- `interview_fundamental/datastruct_array_builtin_interview.js`
-- `interview_fundamental/datastruct_map_builtin_interview.js`
-- `interview_fundamental/datastruct_string_builtin_interview.js`
-- `interview_fundamental/datastruct_set_builtin_interview.js`
-- `interview_fundamental/datastruct_object_builtin_interview.js`
+- `fundamental_practice/datastruct_array_builtin_interview.js`
+- `fundamental_practice/datastruct_map_builtin_interview.js`
+- `fundamental_practice/datastruct_string_builtin_interview.js`
+- `fundamental_practice/datastruct_set_builtin_interview.js`
+- `fundamental_practice/datastruct_object_builtin_interview.js`
 
 ## Included operations
 
@@ -51,11 +51,11 @@ npm run test:common
 Run self-tests directly per file:
 
 ```bash
-node interview_fundamental/datastruct_array_builtin_interview.js
-node interview_fundamental/datastruct_map_builtin_interview.js
-node interview_fundamental/datastruct_string_builtin_interview.js
-node interview_fundamental/datastruct_set_builtin_interview.js
-node interview_fundamental/datastruct_object_builtin_interview.js
+node fundamental_practice/datastruct_array_builtin_interview.js
+node fundamental_practice/datastruct_map_builtin_interview.js
+node fundamental_practice/datastruct_string_builtin_interview.js
+node fundamental_practice/datastruct_set_builtin_interview.js
+node fundamental_practice/datastruct_object_builtin_interview.js
 ```
 
 When you run each file directly, it prints:

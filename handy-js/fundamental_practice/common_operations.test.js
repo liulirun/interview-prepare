@@ -9,7 +9,7 @@ const {
   partition,
   rotateRight,
   twoSumIndices,
-} = require("../interview_fundamental/datastruct_array_builtin_interview");
+} = require("./datastruct_array_builtin_interview");
 const {
   listCommonMapBuiltins,
   listCommonMapBuiltinExamples,
@@ -18,7 +18,7 @@ const {
   invertMap,
   mapValues,
   mergeFrequencyMaps,
-} = require("../interview_fundamental/datastruct_map_builtin_interview");
+} = require("./datastruct_map_builtin_interview");
 const {
   listCommonStringBuiltins,
   listCommonStringBuiltinExamples,
@@ -27,7 +27,7 @@ const {
   reverseWords,
   isPalindromeNormalized,
   firstNonRepeatingChar,
-} = require("../interview_fundamental/datastruct_string_builtin_interview");
+} = require("./datastruct_string_builtin_interview");
 const {
   listCommonSetBuiltins,
   listCommonSetBuiltinExamples,
@@ -36,7 +36,7 @@ const {
   isSubset,
   difference,
   symmetricDifference,
-} = require("../interview_fundamental/datastruct_set_builtin_interview");
+} = require("./datastruct_set_builtin_interview");
 const {
   listCommonObjectBuiltins,
   listCommonObjectBuiltinExamples,
@@ -45,11 +45,14 @@ const {
   omit,
   deepSet,
   shallowEqual,
-} = require("../interview_fundamental/datastruct_object_builtin_interview");
+} = require("./datastruct_object_builtin_interview");
 
 test("array: dedupe/chunk/partition/rotate/two-sum", () => {
   assert.equal(listCommonArrayBuiltins().includes("map"), true);
-  assert.equal(listCommonArrayBuiltinExamples().some((item) => item.method === "map"), true);
+  assert.equal(
+    listCommonArrayBuiltinExamples().some((item) => item.method === "map"),
+    true,
+  );
   assert.deepEqual(dedupeStable([1, 2, 1, 3, 2]), [1, 2, 3]);
   assert.deepEqual(chunk([1, 2, 3, 4, 5], 2), [[1, 2], [3, 4], [5]]);
 
@@ -63,7 +66,10 @@ test("array: dedupe/chunk/partition/rotate/two-sum", () => {
 
 test("map: count/group/invert/map-values/merge-frequencies", () => {
   assert.equal(listCommonMapBuiltins().includes("set"), true);
-  assert.equal(listCommonMapBuiltinExamples().some((item) => item.method === "set"), true);
+  assert.equal(
+    listCommonMapBuiltinExamples().some((item) => item.method === "set"),
+    true,
+  );
   const users = [
     { name: "Ava", team: "qa" },
     { name: "Ben", team: "platform" },
@@ -77,7 +83,7 @@ test("map: count/group/invert/map-values/merge-frequencies", () => {
   const groups = groupByToMap(users, (u) => u.team);
   assert.deepEqual(
     groups.get("qa").map((u) => u.name),
-    ["Ava", "Cara"]
+    ["Ava", "Cara"],
   );
 
   const inverted = invertMap(
@@ -85,12 +91,18 @@ test("map: count/group/invert/map-values/merge-frequencies", () => {
       ["x", 1],
       ["y", 1],
       ["z", 2],
-    ])
+    ]),
   );
   assert.deepEqual(inverted.get(1), ["x", "y"]);
   assert.deepEqual(inverted.get(2), ["z"]);
 
-  const scaled = mapValues(new Map([["a", 2], ["b", 3]]), (value) => value * 10);
+  const scaled = mapValues(
+    new Map([
+      ["a", 2],
+      ["b", 3],
+    ]),
+    (value) => value * 10,
+  );
   assert.equal(scaled.get("a"), 20);
   assert.equal(scaled.get("b"), 30);
 
@@ -102,7 +114,7 @@ test("map: count/group/invert/map-values/merge-frequencies", () => {
     new Map([
       ["a", 3],
       ["c", 5],
-    ])
+    ]),
   );
   assert.equal(merged.get("a"), 5);
   assert.equal(merged.get("b"), 1);
@@ -112,13 +124,21 @@ test("map: count/group/invert/map-values/merge-frequencies", () => {
 test("string: anagram/prefix/reverse/palindrome/first unique char", () => {
   assert.equal(listCommonStringBuiltins().includes("split"), true);
   assert.equal(
-    listCommonStringBuiltinExamples().some((item) => item.method === "replaceAll"),
-    true
+    listCommonStringBuiltinExamples().some(
+      (item) => item.method === "replaceAll",
+    ),
+    true,
   );
   assert.equal(isAnagram("Dormitory", "dirty room"), true);
   assert.equal(isAnagram("hello", "world"), false);
-  assert.equal(longestCommonPrefix(["interview", "internet", "internal"]), "inter");
-  assert.equal(reverseWords("  senior   js   interview  "), "interview js senior");
+  assert.equal(
+    longestCommonPrefix(["interview", "internet", "internal"]),
+    "inter",
+  );
+  assert.equal(
+    reverseWords("  senior   js   interview  "),
+    "interview js senior",
+  );
   assert.equal(isPalindromeNormalized("A man, a plan, a canal: Panama"), true);
   assert.equal(isPalindromeNormalized("openai"), false);
   assert.equal(firstNonRepeatingChar("swiss"), "w");
@@ -127,7 +147,10 @@ test("string: anagram/prefix/reverse/palindrome/first unique char", () => {
 
 test("set: union/intersection/subset/difference/symmetric difference", () => {
   assert.equal(listCommonSetBuiltins().includes("add"), true);
-  assert.equal(listCommonSetBuiltinExamples().some((item) => item.method === "add"), true);
+  assert.equal(
+    listCommonSetBuiltinExamples().some((item) => item.method === "add"),
+    true,
+  );
   const a = new Set([1, 2, 3]);
   const b = new Set([3, 4, 5]);
 
@@ -136,14 +159,19 @@ test("set: union/intersection/subset/difference/symmetric difference", () => {
   assert.equal(isSubset(new Set([1, 3]), a), true);
   assert.equal(isSubset(new Set([1, 9]), a), false);
   assert.deepEqual([...difference(a, b)], [1, 2]);
-  assert.deepEqual([...symmetricDifference(a, b)].sort((x, y) => x - y), [1, 2, 4, 5]);
+  assert.deepEqual(
+    [...symmetricDifference(a, b)].sort((x, y) => x - y),
+    [1, 2, 4, 5],
+  );
 });
 
 test("object: deepGet/pick/omit/deepSet/shallowEqual", () => {
   assert.equal(listCommonObjectBuiltins().includes("keys"), true);
   assert.equal(
-    listCommonObjectBuiltinExamples().some((item) => item.method === "fromEntries"),
-    true
+    listCommonObjectBuiltinExamples().some(
+      (item) => item.method === "fromEntries",
+    ),
+    true,
   );
   const profile = {
     id: 7,
