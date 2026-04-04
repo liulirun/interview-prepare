@@ -1,12 +1,42 @@
+import java.util.HashMap;
+import java.util.Map;
+
 /**
- * LONGEST SUBSTRING WITHOUT REPEATING CHARACTERS (simple window-string style)
+ * Q5) Longest Substring Without Repeating Characters
  *
- * Pro tip:
- * Start with this readable approach, then mention the index-map sliding window
- * optimization for strict O(n) on very long inputs.
+ * AI-BEST:
+ * Sliding window + last seen index map.
+ * Time: O(n), Space: O(k)
+ *
+ * AI-EASY:
+ * String window with indexOf + substring.
+ * Time: can degrade to O(n^2), Space: moderate
  */
 public class LongestSubstring {
-    static String getLongestSubstringSimple(String s) {
+    static String longestSubstringBest(String s) {
+        int left = 0;
+        int bestStart = 0;
+        int bestLen = 0;
+        Map<Character, Integer> lastSeen = new HashMap<>();
+
+        for (int right = 0; right < s.length(); right++) {
+            char ch = s.charAt(right);
+            if (lastSeen.containsKey(ch) && lastSeen.get(ch) >= left) {
+                left = lastSeen.get(ch) + 1;
+            }
+            lastSeen.put(ch, right);
+
+            int currentLen = right - left + 1;
+            if (currentLen > bestLen) {
+                bestLen = currentLen;
+                bestStart = left;
+            }
+        }
+
+        return s.substring(bestStart, bestStart + bestLen);
+    }
+
+    static String longestSubstringEasy(String s) {
         String currentWindow = "";
         String longestFound = "";
 
@@ -28,6 +58,12 @@ public class LongestSubstring {
     }
 
     public static void main(String[] args) {
-        System.out.println(getLongestSubstringSimple("abcdbcabcbb"));
+        System.out.println("Q5: Longest Substring Without Repeating Characters");
+        String[] samples = {"abcdbcabcbb", "bbbbb", "pwwkew", "", "au"};
+        for (String s : samples) {
+            System.out.println("Input: \"" + s + "\"");
+            System.out.println("  BEST: " + longestSubstringBest(s));
+            System.out.println("  EASY: " + longestSubstringEasy(s));
+        }
     }
 }

@@ -1,82 +1,91 @@
-is the max string length. For very long strings, replacing the sort with a frequency array tuple `(0, 1, 0...)` of size 26 can reduce complexity to
+"""
+Q1) Minimum Window Substring
 
-3\. Minimum Window Substring
+AI-BEST:
+- Sliding window + frequency maps.
+- Time: O(n + m), Space: O(k)
 
-**Question:** Given two strings `s` and `t`, return the minimum window in `s` which will contain all the characters in `t`.
+AI-EASY:
+- Check every substring and validate against required chars.
+- Time: O(n^3) naive, Space: O(k)
+"""
 
-**Answer & Code:**\
-This requires a **Two-Pointer Sliding Window**. We expand the right pointer until the condition is met, then contract the left pointer to find the "minimum."
-
-```python
 from collections import Counter
 
-def min_window(s: str, t: str) -> str:
-    if not t or not s: return ""
 
-    dict_t = Counter(t)
-    required = len(dict_t)
-    l, r = 0, 0
+def min_window_best(s: str, t: str) -> str:
+    if not s or not t:
+        return ""
+
+    need = Counter(t)
+    required = len(need)
+
     formed = 0
-    window_counts = {}
-    ans = float("inf"), None, None # (length, left, right)
+    left = 0
+    window_counts: dict[str, int] = {}
+    best_len = float("inf")
+    best_l = 0
+    best_r = 0
 
-    while r < len(s):
-        char = s[r]
-        window_counts[char] = window_counts.get(char, 0) + 1
-        if char in dict_t and window_counts[char] == dict_t[char]:
+    for right, ch in enumerate(s):
+        window_counts[ch] = window_counts.get(ch, 0) + 1
+        if ch in need and window_counts[ch] == need[ch]:
             formed += 1
 
-        while l <= r and formed == required:
-            char = s[l]
-            if r - l + 1 < ans[0]:
-                ans = (r - l + 1, l, r)
+        # Shrink while the window remains valid.
+        while left <= right and formed == required:
+            current_len = right - left + 1
+            if current_len < best_len:
+                best_len = current_len
+                best_l = left
+                best_r = right
 
-            window_counts[char] -= 1
-            if char in dict_t and window_counts[char] < dict_t[char]:
+            left_char = s[left]
+            window_counts[left_char] -= 1
+            if left_char in need and window_counts[left_char] < need[left_char]:
                 formed -= 1
-            l += 1    
-        r += 1
+            left += 1
 
-    return "" if ans[0] == float("inf") else s[ans[1] : ans[2] + 1]
-```
-
-
-**Senior Note:** This is a classic "Hard" problem. Mentioning the "contracting window" logic demonstrates an understanding of optimizing search spaces.
-
-**Senior Note:** Discussing **Manacher’s Algorithm** (
+    if best_len == float("inf"):
+        return ""
+    return s[best_l:best_r + 1]
 
 
-time) is a great way to show deep theoretical knowledge, even if you implement the
-version for readability.
+def min_window_easy(s: str, t: str) -> str:
+    if not s or not t or len(t) > len(s):
+        return ""
 
-5\. String Compression (Run-Length Encoding)
-
-**Question:** Implement a function to perform basic string compression using the counts of repeated characters (e.g., "aabcccccaaa" -> "a2b1c5a3"). If the compressed string is not smaller, return the original.
-
-**Answer & Code:**\
-In Python, avoid repeated string concatenation (which is
-
-due to immutability). Use a list and `.join()`.
-
-```python
-def compress_string(s: str) -> str:
-    if not s: return ""
-
-    res = []
-    count = 0
-
-    for i in range(len(s)):
-        count += 1
-        # If next char is different or we reached the end
-        if i + 1 == len(s) or s[i] != s[i+1]:
-            res.append(s[i] + str(count))
-            count = 0
-
-    result = "".join(res)
-    return result if len(result) < len(s) else s
-
-# Example: "aabcccccaaa" -> "a2b1c5a3"
-```
+    best = ""
+    for start in range(len(s)):
+        for end in range(start, len(s)):
+            candidate = s[start:end + 1]
+            if _covers_all(candidate, t):
+                if best == "" or len(candidate) < len(best):
+                    best = candidate
+    return best
 
 
-**Senior Note:** Emphasize that strings in Python are **immutable**. Building a string in a loop using `+` creates a new string object every time. Using a list buffer is the industry standard for performance.
+def _covers_all(candidate: str, t: str) -> bool:
+    counts = Counter(candidate)
+    for ch in t:
+        counts[ch] -= 1
+        if counts[ch] < 0:
+            return False
+    return True
+
+
+def run_demo() -> None:
+    print("Q1: Minimum Window Substring")
+    samples = [
+        ("ADOBECODEBANC", "ABC"),
+        ("a", "a"),
+        ("a", "aa"),
+    ]
+    for s, t in samples:
+        print(f'Input: s="{s}", t="{t}"')
+        print("  BEST:", min_window_best(s, t))
+        print("  EASY:", min_window_easy(s, t))
+
+
+if __name__ == "__main__":
+    run_demo()

@@ -1,7 +1,54 @@
 /**
- * LONGEST PALINDROME (expand around center), O(n^2)
+ * Q4) Longest Palindromic Substring
+ *
+ * AI-BEST:
+ * Manacher's algorithm.
+ * Time: O(n), Space: O(n)
+ *
+ * AI-EASY:
+ * Expand around center.
+ * Time: O(n^2), Space: O(1) extra
  */
-function longestPalindromeExpand(s: string): string {
+
+function longestPalindromeBest(s: string): string {
+  if (!s) return "";
+
+  const transformed: string[] = ["^"];
+  for (const ch of s) transformed.push("#", ch);
+  transformed.push("#", "$");
+  const t = transformed.join("");
+
+  const p = new Array<number>(t.length).fill(0);
+  let center = 0;
+  let right = 0;
+
+  for (let i = 1; i < t.length - 1; i++) {
+    const mirror = 2 * center - i;
+    if (i < right) p[i] = Math.min(right - i, p[mirror]);
+
+    while (t[i + 1 + p[i]] === t[i - 1 - p[i]]) p[i]++;
+
+    if (i + p[i] > right) {
+      center = i;
+      right = i + p[i];
+    }
+  }
+
+  let maxLen = 0;
+  let centerIndex = 0;
+  for (let i = 1; i < p.length - 1; i++) {
+    if (p[i] > maxLen) {
+      maxLen = p[i];
+      centerIndex = i;
+    }
+  }
+
+  const start = Math.floor((centerIndex - maxLen) / 2);
+  return s.slice(start, start + maxLen);
+}
+
+function longestPalindromeEasy(s: string): string {
+  if (!s) return "";
   let best = "";
 
   for (let i = 0; i < s.length; i++) {
@@ -10,7 +57,6 @@ function longestPalindromeExpand(s: string): string {
     if (odd.length > best.length) best = odd;
     if (even.length > best.length) best = even;
   }
-
   return best;
 }
 
@@ -24,7 +70,17 @@ function expandAroundCenter(s: string, left: number, right: number): string {
   return s.slice(l + 1, r);
 }
 
-console.log(longestPalindromeExpand("baabad"));
+function runDemo(): void {
+  console.log("Q4: Longest Palindromic Substring");
+  const samples = ["baabad", "babad", "cbbd", "a", ""];
+  for (const s of samples) {
+    console.log(`Input: "${s}"`);
+    console.log("  BEST:", longestPalindromeBest(s));
+    console.log("  EASY:", longestPalindromeEasy(s));
+  }
+}
+
+runDemo();
 
 export {};
 

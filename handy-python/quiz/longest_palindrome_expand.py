@@ -1,81 +1,80 @@
-def longest_palindrome_expand(s: str) -> str:
-    """O(n2)
-    odd and even, expand_and_log(s, i, i) vs expand_and_log(s, i, i + 1)
-    one loop, 
-    expand(find)  go both direction, with in string range + char(left) == char(right)
-    """
-    res = ""
+"""
+Q4) Longest Palindromic Substring
 
-    print(f"Input: '{s}'\n" + "="*50)
+AI-BEST:
+- Manacher's algorithm.
+- Time: O(n), Space: O(n)
 
+AI-EASY:
+- Expand around center (odd + even).
+- Time: O(n^2), Space: O(1) extra
+"""
+
+
+def longest_palindrome_best(s: str) -> str:
+    if not s:
+        return ""
+
+    # Transform "abba" -> "^#a#b#b#a#$" to unify odd/even centers.
+    t = "^#" + "#".join(s) + "#$"
+    p = [0] * len(t)
+    center = 0
+    right = 0
+
+    for i in range(1, len(t) - 1):
+        mirror = 2 * center - i
+        if i < right:
+            p[i] = min(right - i, p[mirror])
+
+        while t[i + 1 + p[i]] == t[i - 1 - p[i]]:
+            p[i] += 1
+
+        if i + p[i] > right:
+            center = i
+            right = i + p[i]
+
+    max_len = 0
+    center_index = 0
+    for i in range(1, len(p) - 1):
+        if p[i] > max_len:
+            max_len = p[i]
+            center_index = i
+
+    start = (center_index - max_len) // 2
+    return s[start:start + max_len]
+
+
+def longest_palindrome_easy(s: str) -> str:
+    if not s:
+        return ""
+
+    best = ""
     for i in range(len(s)):
-        print(f"\n--- 🎯 CENTER AT INDEX {i} (char: '{s[i]}') ---")
-
-        # CASE 1: ODD length (Center is 1 character like 'aba')
-        # We start both left (L) and right (R) at the same index 'i'
-        print(f"  Checking ODD expansion...")
-        odd_pal = expand_and_log(s, i, i)
-
-        # CASE 2: EVEN length (Center is between 2 characters like 'abba')
-        # We start L at 'i' and R at 'i+1'
-        print(f"  Checking EVEN expansion...")
-        even_pal = expand_and_log(s, i, i + 1)
-
-        # Update our global best result
-        for found in [odd_pal, even_pal]:
-            if len(found) > len(res):
-                print(f"  ⭐ NEW RECORD: '{found}' beats '{res}'")
-                res = found
-
-    print("="*50)
-    print(f"FINAL RESULT: '{res}'")
-    return res
+        odd = _expand(s, i, i)
+        even = _expand(s, i, i + 1)
+        if len(odd) > len(best):
+            best = odd
+        if len(even) > len(best):
+            best = even
+    return best
 
 
-def expand_and_log(s, l, r):
-    """
-    Helper to expand outward from a center as long as it's a palindrome.
-    """
-    # While we are inside the string bounds AND the characters match
+def _expand(s: str, left: int, right: int) -> str:
+    l, r = left, right
     while l >= 0 and r < len(s) and s[l] == s[r]:
-        print(f"    [MATCH] '{s}- {s[l:r+1]}' is valid. Expanding...")
         l -= 1
         r += 1
-
-    # When the loop stops, l and r have gone ONE STEP TOO FAR.
-    # So we slice from l+1 up to r.
-    result = s[l+1:r]
-    if not result:
-        print(f"    [STOP] No palindrome found here.{result}")
-    else:
-        print(f"    Final palindrome for this center: '{result}'")
-    return result
+    return s[l + 1:r]
 
 
-# Try it out!
-longest_palindrome_expand("baabad")
+def run_demo() -> None:
+    print("Q4: Longest Palindromic Substring")
+    samples = ["baabad", "babad", "cbbd", "a", ""]
+    for s in samples:
+        print(f'Input: "{s}"')
+        print("  BEST:", longest_palindrome_best(s))
+        print("  EASY:", longest_palindrome_easy(s))
 
-# def longest_palindrome_verbose(s: str) -> str:
-# """, brutal force O(n3)"""
-#     longest = ""
-#     # 1. OUTER LOOP: Pick a starting point (i)
-#     for i in range(len(s)):
-#         # 2. INNER LOOP: Pick an ending point (j)
-#         for j in range(i, len(s)):
-#             # Slice the string from i to j (inclusive)
-#             substring = s[i: j + 1]
-#             # 3. PALINDROME CHECK: Reverse it using [::-1]
-#             is_palindrome = (substring == substring[::-1])
-#             # --- Logging the process ---
-#             print(
-#                 f"Testing: '{substring.ljust(10)}' | Palindrome? {is_palindrome}")
-#             # 4. RECORD BREAKER: If it's a palindrome and longer than our previous best
-#             if is_palindrome and len(substring) > len(longest):
-#                 print(f"  ⭐ NEW RECORD! '{substring}' is now the longest.")
-#                 longest = substring
-#         print("-" * 40)  # Divider after each starting letter 'i'
-#     print(f"FINAL RESULT: '{longest}'")
-#     return longest
 
-# # Try it with a classic example
-# longest_palindrome_verbose("abac")
+if __name__ == "__main__":
+    run_demo()

@@ -1,75 +1,60 @@
-from collections import defaultdict
+"""
+Q5) Longest Substring Without Repeating Characters
+
+AI-BEST:
+- Sliding window + last seen index map.
+- Time: O(n), Space: O(k)
+
+AI-EASY:
+- Keep current window string and use find/slicing.
+- Time: can degrade to O(n^2), Space: moderate
+"""
 
 
-# def length_of_longest_substring(s: str) -> int:
-#     used_chars = {}
-#     start = max_length = 0
+def longest_substring_best(s: str) -> str:
+    left = 0
+    best_start = 0
+    best_len = 0
+    last_seen: dict[str, int] = {}
 
-#     print(f"Input string: '{s}'\n" + "-"*40)
+    for right, ch in enumerate(s):
+        if ch in last_seen and last_seen[ch] >= left:
+            left = last_seen[ch] + 1
+        last_seen[ch] = right
 
-#     for index, char in enumerate(s):
-#         print(f"Step {index}: Testing '{char}' at index {index}")
+        current_len = right - left + 1
+        if current_len > best_len:
+            best_len = current_len
+            best_start = left
 
-#         # Check if we hit a duplicate WITHIN the current window
-#         if char in used_chars and start <= used_chars[char]:
-#             old_index = used_chars[char]
-#             # Log the state BEFORE the jump
-#             print(
-#                 f"  ⚠️  DUPLICATE! '{char}' already in window '{s[start:index]}'")
+    return s[best_start:best_start + best_len]
 
-#             # Move start to the right of the previous occurrence
-#             start = old_index + 1
-#             print(
-#                 f"  -> Jumping 'start' to index {start}. New window begins: '{s[start:index+1]}'")
-#         else:
-#             # No duplicate in window, so calculate new length
-#             current_len = index - start + 1
-#             max_length = max(max_length, current_len)
-#             print(f"  ✅  UNIQUE! Current window: '{s[start:index+1]}'")
-#             print(
-#                 f"  -> Window length: {current_len} (Max so far: {max_length})")
 
-#         # Update character's last seen position
-#         used_chars[char] = index
-#         print(f"  Dictionary updated: {char} is at index {index}\n")
-
-#     print("-" * 40)
-#     return max_length
-# length_of_longest_substring("abcabcbb")
-
-def get_longest_substring_simple(s: str) -> str:
-    """
-    one loop in string, find duplicate char in current_str
-    if none duplicate, push to current_str
-    if duplicate, start from duplicate.index + 1
-    swap outside if current > existing
-    """
+def longest_substring_easy(s: str) -> str:
     current_window = ""
     longest_found = ""
 
-    print(f"Input: '{s}'\n" + "-"*30)
-
-    for char in s:
-        if char in current_window:
-            # 1. FIND where the duplicate is in our current string
-            duplicate_index = current_window.find(char)
-            # 2. CHOP OFF the duplicate and everything before it
-            # Then add the new character to the end
-            current_window = current_window[duplicate_index + 1:] + char
-            print(f"  -> Chopped and updated to: '{current_window}'")
+    for ch in s:
+        duplicate_index = current_window.find(ch)
+        if duplicate_index >= 0:
+            current_window = current_window[duplicate_index + 1:] + ch
         else:
-            # 3. Just ADD the unique character
-            current_window += char
-            print(f"  -> Added unique: '{current_window}'")
-        # Keep track of the longest string we've seen so far
+            current_window += ch
+
         if len(current_window) > len(longest_found):
             longest_found = current_window
 
-    print("-" * 30)
     return longest_found
 
 
-# Example
-# print("Final Result:", get_longest_substring_simple("abcdbcabcbb"))
+def run_demo() -> None:
+    print("Q5: Longest Substring Without Repeating Characters")
+    samples = ["abcdbcabcbb", "bbbbb", "pwwkew", "", "au"]
+    for s in samples:
+        print(f'Input: "{s}"')
+        print("  BEST:", longest_substring_best(s))
+        print("  EASY:", longest_substring_easy(s))
 
-# Try it with a string like "pwwkew" to see the "kew" window form!
+
+if __name__ == "__main__":
+    run_demo()

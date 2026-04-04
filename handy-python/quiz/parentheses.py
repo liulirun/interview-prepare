@@ -1,36 +1,50 @@
-def is_balanced(s: str) -> bool:
-    """
-        dict for mapping open /close
-        loop, if char in values: push to stack
-        if char in keys, stack pop -> (OPEN value) and compare wit dict[key] -> (CLOSE value) + if stack not null(edge case).
-        finally if stack is null, if not, then still false ( single OPEN exists)
-        consider edge case!
-    """
-    stack = []
-    # Map closing brackets (keys) to their Opening pairs (values)
+"""
+Q6) Balanced Parentheses
+
+AI-BEST:
+- Stack-based validation.
+- Time: O(n), Space: O(n)
+
+AI-EASY:
+- Repeatedly remove pairs () {} [] until stable.
+- Time: usually O(n^2) or worse, Space: O(n)
+"""
+
+
+def is_balanced_best(s: str) -> bool:
+    stack: list[str] = []
     mapping = {")": "(", "}": "{", "]": "["}
+    opening = set(mapping.values())
 
-    print(f"Checking: {s}")
-
-    for char in s:
-        # IF Opening: only add Opening to stack to match later, no adding Closing
-        if char in mapping.values():
-            stack.append(char)
-            print(f"  Push: {stack}")
-
-        # ELIF Closing: Must match the most recent opener
-        elif char in mapping.keys():
-            # Check if stack is empty (nothing to match) or mismatch
-            if not stack or mapping[char] != stack.pop():
-                print(f"  ❌ Failed at '{char}'")
+    for ch in s:
+        if ch in opening:
+            stack.append(ch)
+        elif ch in mapping:
+            if not stack or stack.pop() != mapping[ch]:
                 return False
-            print(f"  Pop:  {stack}")
 
-    # FINAL: If stack is empty, every opener had a closer
-    result = not stack
-    print(f"Balanced: {result}\n")
-    return result
+    return len(stack) == 0
 
 
-# Test it
-is_balanced("{[()]}")
+def is_balanced_easy(s: str) -> bool:
+    current = s
+    while True:
+        next_value = current.replace("()", "").replace("{}", "").replace("[]", "")
+        if len(next_value) == len(current):
+            break
+        current = next_value
+    return current == ""
+
+
+def run_demo() -> None:
+    print("Q6: Balanced Parentheses")
+    samples = ["{[()]}", "([)]", "(((", "", "a+(b*c)-{d/e}"]
+    for s in samples:
+        filtered = "".join(ch for ch in s if ch in "(){}[]")
+        print(f'Input: "{s}"')
+        print("  BEST:", is_balanced_best(s))
+        print("  EASY:", is_balanced_easy(filtered))
+
+
+if __name__ == "__main__":
+    run_demo()
