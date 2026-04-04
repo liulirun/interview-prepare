@@ -151,3 +151,136 @@ Represent lot as array; linearly scan for contiguous free segment of required si
 - Time: `O(n)` park in worst case.
 - Space: `O(n)`.
 - Tradeoff: Best for small/medium systems, simple and maintainable.
+
+---
+
+## Interview Prep Topics (What to Prepare to Pass)
+
+### Core patterns to master
+- Hash map / set: counting, lookup, deduplication.
+- Two pointers + sliding window: substring/subarray optimization.
+- Stack / queue: validation, monotonic structures, traversal order.
+- Binary search: on sorted arrays and on answer space.
+- Recursion / backtracking: subsets, permutations, combination search.
+- Linked list basics: reverse, detect cycle, fast-slow pointer.
+- Trees / graphs: DFS, BFS, level order, shortest path intuition.
+- Intervals: merge, insert, overlap detection.
+- Heap / priority queue: top-k, streaming min/max.
+- Dynamic programming: 1D DP, 2D DP, state transitions.
+
+### Interview execution skills
+- Clarify constraints before coding (`n`, duplicates, sorted?, negative numbers?).
+- Start with brute force, then optimize step by step.
+- Speak complexity for every solution.
+- Write clean edge-case handling (empty input, one item, all duplicates).
+- Test with 3 cases: normal, edge, stress.
+
+---
+
+## 8) Two Sum
+**Question**  
+Given an array of integers and a target, return indices of two numbers that add up to target.
+
+### [AI-BEST:]
+Scan once with a hash map of `value -> index`. For each number, check if `target - current` already exists in the map; if yes, return the pair.
+
+[AI-ANALYZE:]
+- Time: `O(n)`.
+- Space: `O(n)`.
+- Tradeoff: Fast and standard; uses extra memory.
+
+### [AI-EASY:]
+Use nested loops and test every pair until sum equals target.
+
+[AI-ANALYZE:]
+- Time: `O(n^2)`.
+- Space: `O(1)`.
+- Tradeoff: Very simple, fine for tiny arrays only.
+
+---
+
+## 9) Valid Anagram
+**Question**  
+Given two strings, determine whether one is an anagram of the other.
+
+### [AI-BEST:]
+If lengths differ, return false. Build character frequency counts from first string, decrement using second string, and verify all counts end at zero.
+
+[AI-ANALYZE:]
+- Time: `O(n)`.
+- Space: `O(k)`.
+- Tradeoff: Efficient and robust for large strings.
+
+### [AI-EASY:]
+Sort both strings and compare the sorted results.
+
+[AI-ANALYZE:]
+- Time: `O(n log n)`.
+- Space: depends on sort implementation.
+- Tradeoff: Easy to implement and reason about, but slower than counting.
+
+---
+
+## 10) Merge Intervals
+**Question**  
+Given intervals `[start, end]`, merge all overlapping intervals.
+
+### [AI-BEST:]
+Sort intervals by start time, then iterate once, merging into a result list when overlap exists.
+
+[AI-ANALYZE:]
+- Time: `O(n log n)` because of sorting.
+- Space: `O(n)` for output (or less if in-place style is used).
+- Tradeoff: Standard production approach and easy to maintain.
+
+### [AI-EASY:]
+Repeatedly compare every interval pair and merge overlaps until no more changes happen.
+
+[AI-ANALYZE:]
+- Time: can be `O(n^2)` or worse depending on repeated passes.
+- Space: moderate due to repeated list rebuild.
+- Tradeoff: Conceptually simple, poor scalability.
+
+---
+
+## 11) Top K Frequent Elements
+**Question**  
+Given an array, return the `k` most frequent elements.
+
+### [AI-BEST:]
+Count with hash map, then use bucket sort by frequency (array of lists indexed by frequency), and collect from highest bucket down until `k` elements.
+
+[AI-ANALYZE:]
+- Time: `O(n)` average.
+- Space: `O(n)`.
+- Tradeoff: Excellent performance, slightly more setup code.
+
+### [AI-EASY:]
+Count with hash map, convert to list of pairs, sort by frequency descending, then take first `k`.
+
+[AI-ANALYZE:]
+- Time: `O(n log n)` from sorting.
+- Space: `O(n)`.
+- Tradeoff: Very readable and often acceptable in interviews unless strict time bound is expected.
+
+---
+
+## 12) Binary Search (Find First Occurrence)
+**Question**  
+Given a sorted array and target, return the first index of target, else `-1`.
+
+### [AI-BEST:]
+Use modified binary search: when `mid == target`, store answer and continue searching left half to find earliest occurrence.
+
+[AI-ANALYZE:]
+- Time: `O(log n)`.
+- Space: `O(1)` iterative.
+- Tradeoff: Fast and interview-classic; off-by-one bugs are the main risk.
+
+### [AI-EASY:]
+Use normal binary search to find any occurrence, then linearly move left to first position.
+
+[AI-ANALYZE:]
+- Time: `O(log n + m)` where `m` is duplicate run length; worst case `O(n)`.
+- Space: `O(1)`.
+- Tradeoff: Easier to reason about at first, but weaker worst-case guarantees.
