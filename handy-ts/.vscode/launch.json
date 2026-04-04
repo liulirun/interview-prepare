@@ -1,0 +1,21 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "TypeScript: Debug Current File (ts-node)",
+      "type": "pwa-node",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "runtimeExecutable": "node",
+      "runtimeArgs": [
+        "--enable-source-maps",
+        "-r",
+        "ts-node/register"
+      ],
+      "program": "${file}",
+      "skipFiles": [
+        "<node_internals>/**"
+      ]
+    }
+  ]
+}

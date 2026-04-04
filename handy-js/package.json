@@ -1,0 +1,12 @@
+{
+  "name": "handy-js",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "run": "node ./try.js",
+    "run:handy": "node ./interview_fundamental/handy_array.js",
+    "test": "node --test ./tests/*.test.js",
+    "test:common": "node --test ./tests/common_operations.test.js",
+    "test:interview": "npm run test:common"
+  }
+}

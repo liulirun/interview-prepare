@@ -1,0 +1,13 @@
+{
+  "name": "handy-ts",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "node --enable-source-maps -r ts-node/register ./test.ts"
+  },
+  "devDependencies": {
+    "@types/node": "^20.19.21",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
+  }
+}
