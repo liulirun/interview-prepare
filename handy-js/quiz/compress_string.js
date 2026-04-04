@@ -1,21 +1,61 @@
 /**
- * COMPRESS STRING
+ * Q2) Compress String (Run-Length Encoding)
  *
- * Example: "aabcccccaaa" -> "a2b1c5a3"
+ * AI-BEST:
+ * Build chunks in an array and join once.
+ * Time: O(n), Space: O(n)
+ *
+ * AI-EASY:
+ * Build final string with direct concatenation.
+ * Time: can degrade to O(n^2), Space: O(n)
  */
-function compressString(s) {
-    if (!s)
-        return "";
-    const chunks = [];
-    let count = 0;
-    for (let i = 0; i < s.length; i++) {
-        count += 1;
-        if (i + 1 === s.length || s[i] !== s[i + 1]) {
-            chunks.push(`${s[i]}${count}`);
-            count = 0;
-        }
+
+function compressStringBest(s) {
+  if (!s) return "";
+
+  const chunks = [];
+  let count = 1;
+
+  for (let i = 1; i <= s.length; i++) {
+    if (i < s.length && s[i] === s[i - 1]) {
+      count++;
+    } else {
+      chunks.push(`${s[i - 1]}${count}`);
+      count = 1;
     }
-    const result = chunks.join("");
-    return result.length < s.length ? result : s;
+  }
+
+  const compressed = chunks.join("");
+  return compressed.length < s.length ? compressed : s;
 }
-console.log(compressString("aabcccccaaa"));
+
+function compressStringEasy(s) {
+  if (!s) return "";
+
+  let result = "";
+  let count = 1;
+
+  for (let i = 1; i <= s.length; i++) {
+    if (i < s.length && s[i] === s[i - 1]) {
+      count++;
+    } else {
+      result += `${s[i - 1]}${count}`;
+      count = 1;
+    }
+  }
+
+  return result.length < s.length ? result : s;
+}
+
+function runDemo() {
+  console.log("Q2: Compress String");
+  const samples = ["aabcccccaaa", "abc", "", "aaAA"];
+
+  for (const s of samples) {
+    console.log(`Input: "${s}"`);
+    console.log("  BEST:", compressStringBest(s));
+    console.log("  EASY:", compressStringEasy(s));
+  }
+}
+
+runDemo();
