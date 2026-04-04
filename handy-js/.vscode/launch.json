@@ -7,19 +7,7 @@
       "request": "launch",
       "cwd": "${workspaceFolder}",
       "program": "${file}",
-      "skipFiles": [
-        "<node_internals>/**"
-      ]
-    },
-    {
-      "name": "JavaScript: Debug Interview Handy Array",
-      "type": "pwa-node",
-      "request": "launch",
-      "cwd": "${workspaceFolder}",
-      "program": "${workspaceFolder}/interview_fundamental/handy_array.js",
-      "skipFiles": [
-        "<node_internals>/**"
-      ]
+      "skipFiles": ["<node_internals>/**"]
     }
   ]
 }
