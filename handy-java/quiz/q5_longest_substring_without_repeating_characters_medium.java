@@ -12,7 +12,7 @@ import java.util.Map;
  * String window with indexOf + substring.
  * Time: can degrade to O(n^2), Space: moderate
  */
-public class LongestSubstring {
+public class q5_longest_substring_without_repeating_characters_medium {
     static String longestSubstringBest(String s) {
         int left = 0;
         int bestStart = 0;
@@ -67,3 +67,5 @@ public class LongestSubstring {
         }
     }
 }
+
+

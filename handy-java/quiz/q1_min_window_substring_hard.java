@@ -12,7 +12,7 @@ import java.util.Map;
  * Check all substrings and validate.
  * Time: O(n^3) naive, Space: O(k)
  */
-public class MinimumWindowSubstringQuiz {
+public class q1_min_window_substring_hard {
     static String minWindowBest(String s, String t) {
         if (s == null || t == null || s.isEmpty() || t.isEmpty()) return "";
 
@@ -103,3 +103,5 @@ public class MinimumWindowSubstringQuiz {
         }
     }
 }
+
+

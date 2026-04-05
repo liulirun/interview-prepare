@@ -9,7 +9,7 @@
  * Use direct string concatenation.
  * Time: can degrade to O(n^2), Space: O(n)
  */
-public class CompressStringQuiz {
+public class q2_compress_string_easy {
     static String compressBest(String s) {
         if (s == null || s.isEmpty()) return "";
 
@@ -57,3 +57,5 @@ public class CompressStringQuiz {
         }
     }
 }
+
+

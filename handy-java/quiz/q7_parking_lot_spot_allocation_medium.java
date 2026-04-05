@@ -16,7 +16,7 @@ import java.util.Map;
  * Linear scan on spot array for a contiguous free block.
  * Time: O(n) park in worst case, Space: O(n)
  */
-public class ParkingInterview {
+public class q7_parking_lot_spot_allocation_medium {
     static abstract class Vehicle {
         protected final String licensePlate;
 
@@ -204,3 +204,5 @@ public class ParkingInterview {
         System.out.println("[BEST] Free final: " + bestLot.debugFreeIntervals());
     }
 }
+
+

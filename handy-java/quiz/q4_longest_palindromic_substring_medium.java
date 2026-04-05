@@ -9,7 +9,7 @@
  * Expand around center (odd/even).
  * Time: O(n^2), Space: O(1) extra
  */
-public class LongestPalindromeExpand {
+public class q4_longest_palindromic_substring_medium {
     static String longestPalindromeBest(String s) {
         if (s == null || s.isEmpty()) return "";
 
@@ -84,3 +84,5 @@ public class LongestPalindromeExpand {
         }
     }
 }
+
+

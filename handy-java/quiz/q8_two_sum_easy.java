@@ -13,7 +13,7 @@ import java.util.Map;
  * Nested loops for all pairs.
  * Time: O(n^2), Space: O(1)
  */
-public class TwoSumQuiz {
+public class q8_two_sum_easy {
     static int[] twoSumBest(int[] nums, int target) {
         Map<Integer, Integer> seen = new HashMap<>();
         for (int i = 0; i < nums.length; i++) {
@@ -51,3 +51,5 @@ public class TwoSumQuiz {
         }
     }
 }
+
+

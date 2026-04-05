@@ -13,7 +13,7 @@ import java.util.Map;
  * Sort both strings and compare.
  * Time: O(n log n), Space: depends on sorting implementation
  */
-public class ValidAnagramQuiz {
+public class q9_valid_anagram_easy {
     static boolean isAnagramBest(String s, String t) {
         if (s.length() != t.length()) return false;
 
@@ -59,3 +59,5 @@ public class ValidAnagramQuiz {
         }
     }
 }
+
+

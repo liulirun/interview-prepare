@@ -14,7 +14,7 @@ import java.util.List;
  * Repeated pairwise merges until stable.
  * Time: O(n^2) or worse, Space: O(n)
  */
-public class MergeIntervalsQuiz {
+public class q10_merge_intervals_medium {
     static List<int[]> mergeBest(int[][] intervals) {
         if (intervals.length <= 1) {
             List<int[]> copy = new ArrayList<>();
@@ -98,3 +98,5 @@ public class MergeIntervalsQuiz {
         }
     }
 }
+
+

@@ -15,7 +15,7 @@ import java.util.Map;
  * Frequency map + sort by frequency.
  * Time: O(n log n), Space: O(n)
  */
-public class TopKFrequentQuiz {
+public class q11_top_k_frequent_elements_medium {
     static List<Integer> topKBest(int[] nums, int k) {
         Map<Integer, Integer> freq = new HashMap<>();
         for (int n : nums) freq.put(n, freq.getOrDefault(n, 0) + 1);
@@ -68,3 +68,5 @@ public class TopKFrequentQuiz {
         }
     }
 }
+
+

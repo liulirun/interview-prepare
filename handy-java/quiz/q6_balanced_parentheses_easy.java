@@ -13,7 +13,7 @@ import java.util.Map;
  * Repeatedly remove (), {}, [] pairs until stable.
  * Time: usually O(n^2) or worse, Space: O(n)
  */
-public class ParenthesesExample {
+public class q6_balanced_parentheses_easy {
     static boolean isBalancedBest(String s) {
         Deque<Character> stack = new ArrayDeque<>();
         Map<Character, Character> mapping = Map.of(
@@ -64,3 +64,5 @@ public class ParenthesesExample {
         }
     }
 }
+
+

@@ -11,7 +11,7 @@ import java.util.Arrays;
  * Find any match, then walk left.
  * Time: O(log n + m), worst O(n), Space: O(1)
  */
-public class BinarySearchFirstOccurrenceQuiz {
+public class q12_binary_search_first_occurrence_easy {
     static int firstOccurrenceBest(int[] nums, int target) {
         int left = 0;
         int right = nums.length - 1;
@@ -71,3 +71,5 @@ public class BinarySearchFirstOccurrenceQuiz {
         }
     }
 }
+
+

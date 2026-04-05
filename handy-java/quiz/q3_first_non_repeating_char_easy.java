@@ -12,7 +12,7 @@ import java.util.Map;
  * Nested loops count per char.
  * Time: O(n^2), Space: O(1) extra
  */
-public class FirstNonRepeatingCharQuiz {
+public class q3_first_non_repeating_char_easy {
     static int firstUniqueIndexBest(String s) {
         Map<Character, Integer> counts = new HashMap<>();
         for (char ch : s.toCharArray()) {
@@ -45,3 +45,5 @@ public class FirstNonRepeatingCharQuiz {
         }
     }
 }
+
+
