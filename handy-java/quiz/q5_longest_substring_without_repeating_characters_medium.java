@@ -22,6 +22,13 @@ public class q5_longest_substring_without_repeating_characters_medium {
         for (int right = 0; right < s.length(); right++) {
             char ch = s.charAt(right);
             if (lastSeen.containsKey(ch) && lastSeen.get(ch) >= left) {
+                // ABCB , when Second B found,  lastSeen.get(ch) == 1, 
+                // so make the left window to go one bit after first B
+
+                //AVOID: Example: A B B A
+                // Window becomes [B] at the second B.
+                // When you hit the second A, its "last seen" was at index 0.
+                // If you didn't check Step 2, you'd move your left pointer back to index 1, making your window B B A (which has two Bs!).
                 left = lastSeen.get(ch) + 1;
             }
             lastSeen.put(ch, right);
