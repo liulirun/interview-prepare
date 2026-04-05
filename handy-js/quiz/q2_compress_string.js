@@ -60,7 +60,7 @@ function runDemo() {
   for (const s of samples) {
     console.log(`Input: "${s}"`);
     console.log("  BEST:", compressStringBest(s));
-    console.log("  EASY:", compressStringEasy(s));
+    // console.log("  EASY:", compressStringEasy(s));
   }
 }
 
