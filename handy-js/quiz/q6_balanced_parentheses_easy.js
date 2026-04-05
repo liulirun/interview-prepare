@@ -4,10 +4,6 @@
  * AI-BEST:
  * Stack-based parser.
  * Time: O(n), Space: O(n)
- *
- * AI-EASY:
- * Repeatedly remove () {} [] until unchanged.
- * Time: usually O(n^2) or worse, Space: O(n)
  */
 
 function isBalancedBest(s) {
@@ -35,21 +31,6 @@ function isBalancedBest(s) {
   return stack.length === 0;
 }
 
-function isBalancedEasy(s) {
-  // Step 1 (EASY): repeatedly remove direct pairs.
-  let current = s;
-
-  // Step 2 (EASY): stop when no reduction occurs.
-  while (true) {
-    const next = current.replaceAll("()", "").replaceAll("{}", "").replaceAll("[]", "");
-    if (next.length === current.length) break;
-    current = next;
-  }
-
-  // Step 3 (EASY): empty result means balanced.
-  return current.length === 0;
-}
-
 function runDemo() {
   console.log("Q6: Balanced Parentheses");
   const samples = ["{[()]}", "([)]", "(((", "", "a+(b*c)-{d/e}"];
@@ -57,7 +38,6 @@ function runDemo() {
   for (const s of samples) {
     console.log(`Input: "${s}"`);
     console.log("  BEST:", isBalancedBest(s));
-    console.log("  EASY:", isBalancedEasy(s.replace(/[^(){}\[\]]/g, "")));
   }
 }
 

@@ -23,11 +23,11 @@ Given two strings `s` and `t`, return the smallest substring in `s` that contain
 [AI-ANALYZE:]
 - Time: up to `O(n^3)` naive.
 - Space: depends on checking method, usually low to moderate.
-- Tradeoff: Very easy to explain, but too slow for large inputs.
+- Tradeoff: Easy to explain, but too slow for large inputs.
 
 ---
 
-## 2) Compress String (Run-Length Encoding)
+## 2) Compress String (Run-Length Encoding) - EASY
 **Question**  
 Convert `aabcccccaaa` into `a2b1c5a3`, and return original string if compressed result is not shorter.
 
@@ -41,19 +41,9 @@ Convert `aabcccccaaa` into `a2b1c5a3`, and return original string if compressed 
 - Space: `O(n)`.
 - Tradeoff: Slightly more code, but stable and scalable.
 
-### [AI-EASY:]
-- Step 1: Scan and count repeated consecutive chars.
-- Step 2: Concatenate `char + count` directly into the result string each time.
-- Step 3: Return shorter between compressed and original.
-
-[AI-ANALYZE:]
-- Time: can degrade to `O(n^2)` due to repeated string reallocation.
-- Space: `O(n)`.
-- Tradeoff: Short and readable, but less predictable performance.
-
 ---
 
-## 3) First Non-Repeating Character Index
+## 3) First Non-Repeating Character Index - EASY
 **Question**  
 Return the index of the first character that appears exactly once; return `-1` if none.
 
@@ -67,18 +57,9 @@ Return the index of the first character that appears exactly once; return `-1` i
 - Space: `O(k)`.
 - Tradeoff: Best balance of clarity and performance.
 
-### [AI-EASY:]
-- Step 1: For each character, scan full string to count occurrences.
-- Step 2: Return first index whose count is `1`.
-
-[AI-ANALYZE:]
-- Time: `O(n^2)`.
-- Space: `O(1)` extra (ignoring charset assumptions).
-- Tradeoff: Very straightforward but does not scale well.
-
 ---
 
-## 4) Longest Palindromic Substring
+## 4) Longest Palindromic Substring - HARD
 **Question**  
 Find the longest substring that reads the same forward and backward.
 
@@ -100,11 +81,11 @@ Find the longest substring that reads the same forward and backward.
 [AI-ANALYZE:]
 - Time: `O(n^2)`.
 - Space: `O(1)` extra.
-- Tradeoff: Much easier and usually preferred unless strict linear-time is required.
+- Tradeoff: Easier to implement, slower for very large input.
 
 ---
 
-## 5) Longest Substring Without Repeating Characters
+## 5) Longest Substring Without Repeating Characters - HARD
 **Question**  
 Return the longest substring with no repeated characters.
 
@@ -126,11 +107,11 @@ Return the longest substring with no repeated characters.
 [AI-ANALYZE:]
 - Time: can degrade to `O(n^2)`.
 - Space: moderate due to repeated slicing.
-- Tradeoff: Easy to write and explain, weaker scalability.
+- Tradeoff: Easy to write, weaker scalability.
 
 ---
 
-## 6) Balanced Parentheses
+## 6) Balanced Parentheses - EASY
 **Question**  
 Check whether `()`, `{}`, and `[]` are balanced and correctly nested.
 
@@ -144,19 +125,9 @@ Check whether `()`, `{}`, and `[]` are balanced and correctly nested.
 - Space: `O(n)` worst case.
 - Tradeoff: Industry-standard and robust parser pattern.
 
-### [AI-EASY:]
-- Step 1: Repeatedly remove `()`, `{}`, and `[]` pairs.
-- Step 2: Stop when no change happens.
-- Step 3: If string is empty, it is balanced.
-
-[AI-ANALYZE:]
-- Time: usually `O(n^2)` or worse.
-- Space: `O(n)` from repeated string rebuilds.
-- Tradeoff: Easy mental model, inefficient for long strings.
-
 ---
 
-## 7) Parking Lot Spot Allocation (OOP Simulation)
+## 7) Parking Lot Spot Allocation (OOP Simulation) - HARD
 **Question**  
 Design parking logic where vehicle types require different spot counts (for example, truck needs 3 contiguous spots).
 
@@ -178,34 +149,11 @@ Design parking logic where vehicle types require different spot counts (for exam
 [AI-ANALYZE:]
 - Time: `O(n)` park in worst case.
 - Space: `O(n)`.
-- Tradeoff: Best for small/medium systems, simple and maintainable.
+- Tradeoff: Simple baseline, less scalable.
 
 ---
 
-## Interview Prep Topics (What to Prepare to Pass)
-
-### Core patterns to master
-- Hash map / set: counting, lookup, deduplication.
-- Two pointers + sliding window: substring/subarray optimization.
-- Stack / queue: validation, monotonic structures, traversal order.
-- Binary search: on sorted arrays and on answer space.
-- Recursion / backtracking: subsets, permutations, combination search.
-- Linked list basics: reverse, detect cycle, fast-slow pointer.
-- Trees / graphs: DFS, BFS, level order, shortest path intuition.
-- Intervals: merge, insert, overlap detection.
-- Heap / priority queue: top-k, streaming min/max.
-- Dynamic programming: 1D DP, 2D DP, state transitions.
-
-### Interview execution skills
-- Clarify constraints before coding (`n`, duplicates, sorted?, negative numbers?).
-- Start with brute force, then optimize step by step.
-- Speak complexity for every solution.
-- Write clean edge-case handling (empty input, one item, all duplicates).
-- Test with 3 cases: normal, edge, stress.
-
----
-
-## 8) Two Sum
+## 8) Two Sum - EASY
 **Question**  
 Given an array of integers and a target, return indices of two numbers that add up to target.
 
@@ -219,18 +167,9 @@ Given an array of integers and a target, return indices of two numbers that add 
 - Space: `O(n)`.
 - Tradeoff: Fast and standard; uses extra memory.
 
-### [AI-EASY:]
-- Step 1: Try every pair with nested loops.
-- Step 2: Return first pair that sums to target.
-
-[AI-ANALYZE:]
-- Time: `O(n^2)`.
-- Space: `O(1)`.
-- Tradeoff: Very simple, fine for tiny arrays only.
-
 ---
 
-## 9) Valid Anagram
+## 9) Valid Anagram - EASY
 **Question**  
 Given two strings, determine whether one is an anagram of the other.
 
@@ -244,18 +183,9 @@ Given two strings, determine whether one is an anagram of the other.
 - Space: `O(k)`.
 - Tradeoff: Efficient and robust for large strings.
 
-### [AI-EASY:]
-- Step 1: Sort both strings.
-- Step 2: Compare sorted outputs.
-
-[AI-ANALYZE:]
-- Time: `O(n log n)`.
-- Space: depends on sort implementation.
-- Tradeoff: Easy to implement and reason about, but slower than counting.
-
 ---
 
-## 10) Merge Intervals
+## 10) Merge Intervals - HARD
 **Question**  
 Given intervals `[start, end]`, merge all overlapping intervals.
 
@@ -281,7 +211,7 @@ Given intervals `[start, end]`, merge all overlapping intervals.
 
 ---
 
-## 11) Top K Frequent Elements
+## 11) Top K Frequent Elements - HARD
 **Question**  
 Given an array, return the `k` most frequent elements.
 
@@ -303,11 +233,11 @@ Given an array, return the `k` most frequent elements.
 [AI-ANALYZE:]
 - Time: `O(n log n)` from sorting.
 - Space: `O(n)`.
-- Tradeoff: Very readable and often acceptable in interviews unless strict time bound is expected.
+- Tradeoff: Readable, but slower at scale.
 
 ---
 
-## 12) Binary Search (Find First Occurrence)
+## 12) Binary Search (Find First Occurrence) - EASY
 **Question**  
 Given a sorted array and target, return the first index of target, else `-1`.
 
@@ -321,12 +251,25 @@ Given a sorted array and target, return the first index of target, else `-1`.
 - Space: `O(1)` iterative.
 - Tradeoff: Fast and interview-classic; off-by-one bugs are the main risk.
 
-### [AI-EASY:]
-- Step 1: Run normal binary search to find any match.
-- Step 2: Move left linearly while value is still target.
-- Step 3: Return that first index.
+---
 
-[AI-ANALYZE:]
-- Time: `O(log n + m)` where `m` is duplicate run length; worst case `O(n)`.
-- Space: `O(1)`.
-- Tradeoff: Easier to reason about at first, but weaker worst-case guarantees.
+## Interview Prep Topics (What to Prepare to Pass)
+
+### Core patterns to master
+- Hash map / set: counting, lookup, deduplication.
+- Two pointers + sliding window: substring/subarray optimization.
+- Stack / queue: validation, monotonic structures, traversal order.
+- Binary search: on sorted arrays and on answer space.
+- Recursion / backtracking: subsets, permutations, combination search.
+- Linked list basics: reverse, detect cycle, fast-slow pointer.
+- Trees / graphs: DFS, BFS, level order, shortest path intuition.
+- Intervals: merge, insert, overlap detection.
+- Heap / priority queue: top-k, streaming min/max.
+- Dynamic programming: 1D DP, 2D DP, state transitions.
+
+### Interview execution skills
+- Clarify constraints before coding (`n`, duplicates, sorted?, negative numbers?).
+- Start with brute force, then optimize step by step.
+- Speak complexity for every solution.
+- Write clean edge-case handling (empty input, one item, all duplicates).
+- Test with 3 cases: normal, edge, stress.

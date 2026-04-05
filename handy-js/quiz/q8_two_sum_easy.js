@@ -4,10 +4,6 @@
  * AI-BEST:
  * One pass hash map: value -> index.
  * Time: O(n), Space: O(n)
- *
- * AI-EASY:
- * Try every pair with nested loops.
- * Time: O(n^2), Space: O(1)
  */
 
 function twoSumBest(nums, target) {
@@ -16,15 +12,6 @@ function twoSumBest(nums, target) {
     const need = target - nums[i];
     if (seen.has(need)) return [seen.get(need), i];
     seen.set(nums[i], i);
-  }
-  return [-1, -1];
-}
-
-function twoSumEasy(nums, target) {
-  for (let i = 0; i < nums.length; i++) {
-    for (let j = i + 1; j < nums.length; j++) {
-      if (nums[i] + nums[j] === target) return [i, j];
-    }
   }
   return [-1, -1];
 }
@@ -40,7 +27,6 @@ function runDemo() {
   for (const { nums, target } of cases) {
     console.log(`Input: nums=${JSON.stringify(nums)}, target=${target}`);
     console.log("  BEST:", twoSumBest(nums, target));
-    console.log("  EASY:", twoSumEasy(nums, target));
   }
 }
 

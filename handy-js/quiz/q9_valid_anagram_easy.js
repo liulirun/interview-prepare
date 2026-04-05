@@ -4,10 +4,6 @@
  * AI-BEST:
  * Count chars from s, subtract with t, verify zero counts.
  * Time: O(n), Space: O(k)
- *
- * AI-EASY:
- * Sort both strings and compare.
- * Time: O(n log n), Space: depends on sort/runtime
  */
 
 function isAnagramBest(s, t) {
@@ -29,13 +25,6 @@ function isAnagramBest(s, t) {
   return true;
 }
 
-function isAnagramEasy(s, t) {
-  if (s.length !== t.length) return false;
-  const sortedS = s.split("").sort().join("");
-  const sortedT = t.split("").sort().join("");
-  return sortedS === sortedT;
-}
-
 function runDemo() {
   console.log("Q9: Valid Anagram");
   const cases = [
@@ -47,7 +36,6 @@ function runDemo() {
   for (const [s, t] of cases) {
     console.log(`Input: s="${s}", t="${t}"`);
     console.log("  BEST:", isAnagramBest(s, t));
-    console.log("  EASY:", isAnagramEasy(s, t));
   }
 }
 
