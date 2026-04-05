@@ -26,7 +26,7 @@ function longestPalindromeBest(s) {
   const p = new Array(t.length).fill(0); // palindrome radius at each center
   let center = 0;
   let right = 0;
-
+  // Senior / Staff Level interview topic !!
   // Step 3 (BEST): compute palindrome radius at every center.
   for (let i = 1; i < t.length - 1; i++) {
     const mirror = 2 * center - i;

@@ -2,24 +2,10 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "type": "java",
-      "name": "ConditionExample",
-      "request": "launch",
-      "mainClass": "ConditionExample",
-      "projectName": "handy-java_7acab387"
-    },
-    {
-      "type": "java",
-      "name": "test",
-      "request": "launch",
-      "mainClass": "test",
-      "projectName": "handy-java_7acab387"
-    },
-    {
-      "name": "Java: Debug Current File",
+      "name": "Java: Debug Current File (F5)",
       "type": "java",
       "request": "launch",
-      "mainClass": "${fileBasenameNoExtension}"
+      "mainClass": "${file}"
     }
   ]
 }

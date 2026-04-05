@@ -24,27 +24,8 @@ public class q2_compress_string_easy {
                 count = 1;
             }
         }
-
         String compressed = builder.toString();
         return compressed.length() < s.length() ? compressed : s;
-    }
-
-    static String compressEasy(String s) {
-        if (s == null || s.isEmpty()) return "";
-
-        String result = "";
-        int count = 1;
-
-        for (int i = 1; i <= s.length(); i++) {
-            if (i < s.length() && s.charAt(i) == s.charAt(i - 1)) {
-                count++;
-            } else {
-                result += s.charAt(i - 1) + Integer.toString(count);
-                count = 1;
-            }
-        }
-
-        return result.length() < s.length() ? result : s;
     }
 
     public static void main(String[] args) {
@@ -53,7 +34,6 @@ public class q2_compress_string_easy {
         for (String s : samples) {
             System.out.println("Input: \"" + s + "\"");
             System.out.println("  BEST: " + compressBest(s));
-            System.out.println("  EASY: " + compressEasy(s));
         }
     }
 }

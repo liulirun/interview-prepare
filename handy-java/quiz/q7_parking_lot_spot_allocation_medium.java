@@ -187,14 +187,14 @@ public class q7_parking_lot_spot_allocation_medium {
                 new Car("CAR-999")
         };
 
-        System.out.println("---- EASY ----");
+        System.out.println("-EASY-");
         ParkingLotEasy easyLot = new ParkingLotEasy(8);
         for (Vehicle v : vehicles) easyLot.park(v);
         easyLot.unpark("BIG-TRK");
         easyLot.park(new Truck("TRK-2"));
         System.out.println("[EASY] Spots: " + easyLot.debugSpots());
 
-        System.out.println("---- BEST ----");
+        System.out.println("-BEST-");
         ParkingLotBest bestLot = new ParkingLotBest(8);
         for (Vehicle v : vehicles) bestLot.park(v);
         System.out.println("[BEST] Free: " + bestLot.debugFreeIntervals());

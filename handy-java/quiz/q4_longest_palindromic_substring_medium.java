@@ -13,6 +13,8 @@ public class q4_longest_palindromic_substring_medium {
     static String longestPalindromeBest(String s) {
         if (s == null || s.isEmpty()) return "";
 
+        // 1. PRE-PROCESS: Add boundaries and separators (#) 
+        // This turns "aba" into "^#a#b#a#$" to handle even/odd lengths uniformly.
         StringBuilder transformed = new StringBuilder("^");
         for (int i = 0; i < s.length(); i++) {
             transformed.append('#').append(s.charAt(i));
@@ -20,24 +22,34 @@ public class q4_longest_palindromic_substring_medium {
         transformed.append("#$");
 
         String t = transformed.toString();
-        int[] p = new int[t.length()];
-        int center = 0;
-        int right = 0;
+        int[] p = new int[t.length()]; // p[i] stores the radius of palindrome at index i
+        int center = 0; // Center of the furthest reaching palindrome
+        int right = 0;  // Right boundary of the furthest reaching palindrome
 
+        // 2. CORE LOOP: Iterate through the transformed string
         for (int i = 1; i < t.length() - 1; i++) {
+            // Calculate the 'mirror' of index i relative to the current center
             int mirror = 2 * center - i;
-            if (i < right) p[i] = Math.min(right - i, p[mirror]);
 
+            // If i is within the 'right' boundary, jump-start p[i] using symmetry
+            if (i < right) {
+                p[i] = Math.min(right - i, p[mirror]);
+            }
+
+            // Attempt to expand the palindrome centered at i
+            // The sentinels (^ and $) prevent this loop from going out of bounds
             while (t.charAt(i + 1 + p[i]) == t.charAt(i - 1 - p[i])) {
                 p[i]++;
             }
 
+            // If the newly expanded palindrome goes further right, update center/right
             if (i + p[i] > right) {
                 center = i;
                 right = i + p[i];
             }
         }
 
+        // 3. FIND MAXIMUM: Locate the largest radius in the p[] array
         int maxLen = 0;
         int centerIndex = 0;
         for (int i = 1; i < p.length - 1; i++) {
@@ -47,9 +59,12 @@ public class q4_longest_palindromic_substring_medium {
             }
         }
 
+        // 4. MAP BACK: Convert the transformed index back to original string coordinates
+        // (centerIndex - maxLen) / 2 correctly finds the original starting index
         int start = (centerIndex - maxLen) / 2;
         return s.substring(start, start + maxLen);
     }
+
 
     static String longestPalindromeEasy(String s) {
         if (s == null || s.isEmpty()) return "";

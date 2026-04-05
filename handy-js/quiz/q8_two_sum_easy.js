@@ -19,9 +19,9 @@ function twoSumBest(nums, target) {
 function runDemo() {
   console.log("Q8: Two Sum");
   const cases = [
-    { nums: [2, 7, 11, 15], target: 9 },
-    { nums: [3, 2, 4], target: 6 },
-    { nums: [3, 3], target: 6 },
+    { nums: [2, 2, 0, 11, 15, 7], target: 9 },
+    // { nums: [3, 2, 4], target: 6 },
+    // { nums: [3, 3], target: 6 },
   ];
 
   for (const { nums, target } of cases) {
