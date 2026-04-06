@@ -22,7 +22,11 @@ function topKFrequentBest(nums, k) {
   }
 
   const result = [];
-  for (let count = buckets.length - 1; count >= 0 && result.length < k; count--) {
+  for (
+    let count = buckets.length - 1;
+    count >= 0 && result.length < k;
+    count--
+  ) {
     for (const value of buckets[count]) {
       result.push(value);
       if (result.length === k) break;
@@ -46,15 +50,15 @@ function topKFrequentEasy(nums, k) {
 function runDemo() {
   console.log("Q11: Top K Frequent Elements");
   const cases = [
-    { nums: [1, 1, 1, 2, 2, 3], k: 2 },
-    { nums: [1], k: 1 },
+    // { nums: [1, 1, 1, 2, 2, 3], k: 2 },
+    // { nums: [1], k: 1 },
     { nums: [4, 4, 2, 2, 2, 3, 3], k: 2 },
   ];
 
   for (const { nums, k } of cases) {
     console.log(`Input: nums=${JSON.stringify(nums)}, k=${k}`);
     console.log("  BEST:", topKFrequentBest(nums, k));
-    console.log("  EASY:", topKFrequentEasy(nums, k));
+    // console.log("  EASY:", topKFrequentEasy(nums, k));
   }
 }
 
