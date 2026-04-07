@@ -11,15 +11,32 @@
             "id": "eb466c7c8f4913c6",
             "type": "leaf",
             "state": {
-              "type": "image",
+              "type": "markdown",
               "state": {
-                "file": "TS/TypeScript Classes.png"
+                "file": "BigO-breakdown.md",
+                "mode": "source",
+                "source": false
               },
-              "icon": "lucide-image",
-              "title": "TypeScript Classes"
+              "icon": "lucide-file",
+              "title": "BigO-breakdown"
+            }
+          },
+          {
+            "id": "66aba3f826850fb0",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "playwright.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "playwright"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -181,9 +198,12 @@
       "bases:Create new base": false
     }
   },
-  "active": "eb466c7c8f4913c6",
+  "active": "68d9c38373e67288",
   "lastOpenFiles": [
+    "Javascript.md",
+    "java-Patterns.md",
     "BigO-breakdown.md",
+    "TS/TypeScript Classes.png",
     "terraform-arch-remote-state.md",
     "terraform.md",
     "shift-left.md",
@@ -192,7 +212,6 @@
     "pytest.md",
     "playwright.md",
     "kobo-project.md",
-    "java-Patterns.md",
     "detail-behaviour-example.md",
     "CICD-pipeline.md",
     "behaviour-tech.md",
@@ -208,7 +227,6 @@
     "AI-prompt.md",
     "AI-Scenario.md",
     "lead copy.md",
-    "terraform-hands_on.md",
     "terraform-hands_on.pdf"
   ]
 }

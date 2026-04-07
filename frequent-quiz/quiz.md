@@ -253,6 +253,225 @@ Given a sorted array and target, return the first index of target, else `-1`.
 
 ---
 
+## 13) Product of Array Except Self - MEDIUM
+**Question**  
+Given an integer array `nums`, return an array where `answer[i]` is the product of all values except `nums[i]`, without using division.
+
+### [AI-BEST:]
+- Step 1: Build prefix products where each position stores product of elements to the left.
+- Step 2: Build suffix products on the fly from right to left.
+- Step 3: Multiply prefix and suffix contribution for each index.
+
+[AI-ANALYZE:]
+- Time: `O(n)`.
+- Space: `O(1)` extra if output array is excluded.
+- Tradeoff: Best performance and handles zeros correctly, but needs careful index handling.
+
+### [AI-EASY:]
+- Step 1: For each index `i`, iterate the full array again.
+- Step 2: Multiply every element except `i`.
+- Step 3: Store the result for `i`.
+
+[AI-ANALYZE:]
+- Time: `O(n^2)`.
+- Space: `O(1)` extra (excluding output).
+- Tradeoff: Very easy to reason about, but too slow for large input.
+
+---
+
+## 14) Group Anagrams - MEDIUM
+**Question**  
+Given an array of strings, group anagrams together.
+
+### [AI-BEST:]
+- Step 1: For each word, sort its characters to create a canonical key.
+- Step 2: Use a hash map from key to list of original words.
+- Step 3: Return all grouped lists.
+
+[AI-ANALYZE:]
+- Time: `O(n * k log k)` where `k` is average word length.
+- Space: `O(n * k)` for groups and keys.
+- Tradeoff: Standard and reliable; sorting each word is the main cost.
+
+### [AI-EASY:]
+- Step 1: Compare each word with existing groups using character counts.
+- Step 2: If it matches a group's signature, append it there.
+- Step 3: If no match, create a new group.
+
+[AI-ANALYZE:]
+- Time: often `O(n^2 * k)` in worst case.
+- Space: `O(n * k)`.
+- Tradeoff: Conceptually straightforward, but scales poorly as group count grows.
+
+---
+
+## 15) Maximum Subarray - EASY
+**Question**  
+Find the contiguous subarray with the largest sum and return that sum.
+
+### [AI-BEST:]
+- Step 1: Use Kadane's approach with `currentSum` and `bestSum`.
+- Step 2: At each value, either start new subarray at current value or extend previous one.
+- Step 3: Update global best on every step.
+
+[AI-ANALYZE:]
+- Time: `O(n)`.
+- Space: `O(1)`.
+- Tradeoff: Optimal and concise, but easy to mis-handle all-negative arrays if initialized incorrectly.
+
+---
+
+## 16) Best Time to Buy and Sell Stock - EASY
+**Question**  
+Given stock prices by day, return the maximum profit from one buy and one sell.
+
+### [AI-BEST:]
+- Step 1: Track the minimum price seen so far while scanning left to right.
+- Step 2: For each day, compute potential profit `price - minPrice`.
+- Step 3: Keep the maximum profit found.
+
+[AI-ANALYZE:]
+- Time: `O(n)`.
+- Space: `O(1)`.
+- Tradeoff: Fast and clean; assumes only one transaction is allowed.
+
+---
+
+## 17) Number of Islands - MEDIUM
+**Question**  
+Given a 2D grid of `'1'` (land) and `'0'` (water), count how many islands exist (connected horizontally/vertically).
+
+### [AI-BEST:]
+- Step 1: Scan each cell.
+- Step 2: When land is found, increment island count and run DFS/BFS to mark all connected land as visited.
+- Step 3: Continue until full grid is processed.
+
+[AI-ANALYZE:]
+- Time: `O(rows * cols)`.
+- Space: `O(rows * cols)` in worst-case recursion/queue usage.
+- Tradeoff: Industry-standard flood-fill pattern; recursion depth can be a risk on very large grids.
+
+### [AI-EASY:]
+- Step 1: For each land cell, check neighbors and attempt to assign or merge island IDs manually.
+- Step 2: Track label equivalences with extra bookkeeping.
+- Step 3: Count unique final island labels.
+
+[AI-ANALYZE:]
+- Time: usually `O(rows * cols * alpha(n))` or worse depending on merge strategy.
+- Space: `O(rows * cols)` for labels/maps.
+- Tradeoff: Can work, but is more bookkeeping-heavy and easier to get wrong than flood-fill.
+
+---
+
+## 18) Kth Largest Element in an Array - MEDIUM
+**Question**  
+Given an unsorted array and integer `k`, return the `k`th largest element.
+
+### [AI-BEST:]
+- Step 1: Use Quickselect to partition around a pivot.
+- Step 2: Recurse/iterate only into the side that contains the target index.
+- Step 3: Stop when pivot lands on the target.
+
+[AI-ANALYZE:]
+- Time: `O(n)` average, `O(n^2)` worst case.
+- Space: `O(1)` extra for iterative in-place partition.
+- Tradeoff: Excellent average performance; worst-case can degrade without good pivot strategy.
+
+### [AI-EASY:]
+- Step 1: Sort array in descending order.
+- Step 2: Return value at index `k - 1`.
+
+[AI-ANALYZE:]
+- Time: `O(n log n)`.
+- Space: depends on sort implementation (`O(1)` to `O(n)`).
+- Tradeoff: Very easy and stable to implement, slower than selection-focused methods.
+
+---
+
+## 19) Move Zeroes - EASY
+**Question**  
+Move all zeros in an array to the end while keeping the relative order of non-zero elements.
+
+### [AI-BEST:]
+- Step 1: Keep a write pointer for the next non-zero position.
+- Step 2: Scan array and copy each non-zero to write pointer, then increment pointer.
+- Step 3: Fill remaining positions with zeros.
+
+[AI-ANALYZE:]
+- Time: `O(n)`.
+- Space: `O(1)`.
+- Tradeoff: In-place and production-friendly; clear two-pointer pattern.
+
+---
+
+## 20) Linked List Cycle - EASY
+**Question**  
+Determine if a singly linked list has a cycle.
+
+### [AI-BEST:]
+- Step 1: Use two pointers, slow moves 1 step and fast moves 2 steps.
+- Step 2: If they ever meet, cycle exists.
+- Step 3: If fast reaches null, no cycle.
+
+[AI-ANALYZE:]
+- Time: `O(n)`.
+- Space: `O(1)`.
+- Tradeoff: Best-known approach; avoids extra memory compared to visited-set method.
+
+---
+
+## 21) Coin Change - MEDIUM
+**Question**  
+Given coin denominations and an amount, return the minimum number of coins needed to make that amount, or `-1` if impossible.
+
+### [AI-BEST:]
+- Step 1: Use bottom-up dynamic programming where `dp[x]` is min coins for amount `x`.
+- Step 2: Initialize `dp[0] = 0`, others as infinity.
+- Step 3: For each amount and coin, relax `dp[x] = min(dp[x], dp[x - coin] + 1)`.
+
+[AI-ANALYZE:]
+- Time: `O(amount * numberOfCoins)`.
+- Space: `O(amount)`.
+- Tradeoff: Deterministic and easy to test; memory grows with target amount.
+
+### [AI-EASY:]
+- Step 1: Try greedy pick of largest coin first repeatedly.
+- Step 2: Reduce remaining amount until zero or stuck.
+- Step 3: Count selected coins.
+
+[AI-ANALYZE:]
+- Time: often around `O(amount)` or `O(amount / minCoin)`.
+- Space: `O(1)`.
+- Tradeoff: Very simple, but incorrect for many coin systems (for example, `[1,3,4]` with amount `6`).
+
+---
+
+## 22) Daily Temperatures - MEDIUM
+**Question**  
+Given daily temperatures, return an array where each index stores how many days until a warmer temperature (or `0` if none).
+
+### [AI-BEST:]
+- Step 1: Use a monotonic decreasing stack of indices.
+- Step 2: While current temperature is warmer than top-of-stack index, pop and compute distance.
+- Step 3: Push current index and continue.
+
+[AI-ANALYZE:]
+- Time: `O(n)` because each index is pushed and popped at most once.
+- Space: `O(n)` worst case.
+- Tradeoff: Best runtime for this pattern, but requires understanding monotonic stack behavior.
+
+### [AI-EASY:]
+- Step 1: For each day, scan forward day by day.
+- Step 2: Stop at first warmer temperature and record distance.
+- Step 3: If none found, record `0`.
+
+[AI-ANALYZE:]
+- Time: `O(n^2)` worst case.
+- Space: `O(1)` extra.
+- Tradeoff: Very intuitive and interview-friendly baseline, but slower for long arrays.
+
+---
+
 ## Interview Prep Topics (What to Prepare to Pass)
 
 ### Core patterns to master
