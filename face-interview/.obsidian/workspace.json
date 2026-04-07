@@ -183,6 +183,7 @@
   },
   "active": "eb466c7c8f4913c6",
   "lastOpenFiles": [
+    "BigO-breakdown.md",
     "terraform-arch-remote-state.md",
     "terraform.md",
     "shift-left.md",
@@ -208,7 +209,6 @@
     "AI-Scenario.md",
     "lead copy.md",
     "terraform-hands_on.md",
-    "test-plan.md",
     "terraform-hands_on.pdf"
   ]
 }
