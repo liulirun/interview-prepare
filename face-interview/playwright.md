@@ -267,7 +267,7 @@ test('Advanced Telemetry & Assertion', async ({ dashboardPage, page }, testInfo)
 - **Soft Assertions**: Mention `expect.soft()`. Seniors use this when they want to check multiple things (like 5 different labels) without stopping the test on the first failure. It collects all errors and reports them at the end.
 - **The `testInfo.outputPath` Trick**: If your test generates a file (like a CSV export), always save it to `testInfo.outputPath('filename.csv')`. Playwright will automatically clean this up or include it in the trace based on your configuration.
 - **Parallelism vs. Context**: Explain that while `use` configures the context, the true power of Playwright is that each test runs in its own `BrowserContext`. This is why we can run 50 tests at once on one machine—something Selenium struggled with for a decade.
-<<<<<<< HEAD
+
 ## `playwright.config.ts`
 The `playwright.config.ts` file is the **brain** of your test suite. It centralizes all your project settings, environment variables, and browser configurations so you don't have to pass complex arguments every time you run a test.
 
@@ -297,9 +297,7 @@ Common Configurations & Examples
 - **Trace on First Retry:** Set `trace: 'on-first-retry'`. This keeps your test runs fast and storage clean, only generating heavy trace files when a test actually fails and needs investigation.
 - **Multiple Projects:** Use the `projects` array to run the same tests against Chromium, Firefox, and WebKit simultaneously with one command.
 - **The `.env` File:** Always use a library like `dotenv` at the top of your config (`require('dotenv').config();`) to keep sensitive credentials out of your TypeScript code.
-=======
 
->>>>>>> ac544e04902d8b09a491d04e251654df5e3b0fdc
 # Shift-left
 
 | Feature                | How it enables Shift-Left                                                                              |

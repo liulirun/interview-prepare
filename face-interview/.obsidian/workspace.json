@@ -27,12 +27,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "playwright.md",
+                "file": "Javascript.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "playwright"
+              "title": "Javascript"
             }
           }
         ],
@@ -198,11 +198,15 @@
       "bases:Create new base": false
     }
   },
-  "active": "68d9c38373e67288",
+  "active": "66aba3f826850fb0",
   "lastOpenFiles": [
+    "AI-questions.md",
+    "CICD-pipeline.md",
+    "BigO-breakdown.md",
+    "behaviour.md",
+    "playwright.md",
     "Javascript.md",
     "java-Patterns.md",
-    "BigO-breakdown.md",
     "TS/TypeScript Classes.png",
     "terraform-arch-remote-state.md",
     "terraform.md",
@@ -210,12 +214,9 @@
     "selenium.md",
     "restAPI.md",
     "pytest.md",
-    "playwright.md",
     "kobo-project.md",
     "detail-behaviour-example.md",
-    "CICD-pipeline.md",
     "behaviour-tech.md",
-    "behaviour.md",
     "behaviour-personal.md",
     "behaviour-detail.md",
     "behaviour-short.md",
@@ -226,7 +227,6 @@
     "TypeScript.md",
     "AI-prompt.md",
     "AI-Scenario.md",
-    "lead copy.md",
     "terraform-hands_on.pdf"
   ]
 }
