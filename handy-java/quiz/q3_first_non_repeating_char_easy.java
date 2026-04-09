@@ -8,9 +8,6 @@ import java.util.Map;
  * Two pass frequency map.
  * Time: O(n), Space: O(k)
  *
- * AI-EASY:
- * Nested loops count per char.
- * Time: O(n^2), Space: O(1) extra
  */
 public class q3_first_non_repeating_char_easy {
     static int firstUniqueIndexBest(String s) {
@@ -24,24 +21,12 @@ public class q3_first_non_repeating_char_easy {
         return -1;
     }
 
-    static int firstUniqueIndexEasy(String s) {
-        for (int i = 0; i < s.length(); i++) {
-            int count = 0;
-            for (int j = 0; j < s.length(); j++) {
-                if (s.charAt(i) == s.charAt(j)) count++;
-            }
-            if (count == 1) return i;
-        }
-        return -1;
-    }
-
     public static void main(String[] args) {
         System.out.println("Q3: First Non-Repeating Character Index");
         String[] samples = {"aabcc", "aacc", "leetcode", "aabbccd"};
         for (String s : samples) {
             System.out.println("Input: \"" + s + "\"");
             System.out.println("  BEST: " + firstUniqueIndexBest(s));
-            System.out.println("  EASY: " + firstUniqueIndexEasy(s));
         }
     }
 }
