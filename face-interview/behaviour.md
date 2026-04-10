@@ -1,12 +1,5 @@
 
-# `AI`
-``` code
-how to phrase interview bahavious question like "your weakness" if I want to express `my do not let people down attitude`. 
-include the bright side
-do not include links in markdown
-```
-
-# Rules
+# Rules - `pattern` STAR. situation / Action / Result. 
 Good traits of leadership to show in your stories: 
 - effective prioritization, 
 - timely update stakeholders / surface risk or roadblock, 
@@ -14,9 +7,6 @@ Good traits of leadership to show in your stories:
 - distribution of work and enable team members, 
 - use different approaches to motivate and assign different tasks to team members with different level of skills and personalities
 - not just prioritize your team’s goal but prioritize overall organizational goal and enable other teams to achieve their goals
-
-## `pattern` STAR
-situation / Action / Result. 
 
 # Questions
 ## Tech Difficulty
@@ -34,9 +24,7 @@ situation / Action / Result.
     - though reaserch and practise + discussion. quiz each other
     - use personal repo for POC, try match our design
   - result: 
-    - milestone1 (setup), 4 months
-    - milestone2 (new requirements + migrate repos), 5 months
-    - milestone3 (optimize),  1 months
+    - project works great. extentable
 
 - `PLAYWRIGHT`
   - difficulty
@@ -50,7 +38,6 @@ situation / Action / Result.
     - framework + some tests + CI integration, finish in 3 months
     - QA can easy working on it, because frame POM make things easy
     - PO is happy because stable + faster, open shift-left
-
 
 - `DBSync`
 

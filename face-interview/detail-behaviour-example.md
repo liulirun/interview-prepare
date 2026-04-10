@@ -1,12 +1,5 @@
 
-# `AI`
-``` code
-how to phrase interview bahavious question like "your weakness" if I want to express `my do not let people down attitude`. 
-include the bright side
-do not include links in markdown
-```
-
-# Rules
+# Rules - `pattern` STAR. situation / Action / Result. 
 Good traits of leadership to show in your stories: 
 - effective prioritization, 
 - timely update stakeholders / surface risk or roadblock, 
@@ -14,9 +7,6 @@ Good traits of leadership to show in your stories:
 - distribution of work and enable team members, 
 - use different approaches to motivate and assign different tasks to team members with different level of skills and personalities
 - not just prioritize your team’s goal but prioritize overall organizational goal and enable other teams to achieve their goals
-
-## `pattern` STAR
-situation / Action / Result. 
 
 # Questions
 ## Tech Difficulty
@@ -34,9 +24,7 @@ situation / Action / Result.
     - though research and practice + discussion. quiz each other
     - use personal repo for POC, try match our design
   - result: 
-    - milestone1 (setup), 4 months
-    - milestone2 (new requirements + migrate repos), 5 months
-    - milestone3 (optimize),  1 months
+    - project works great. extentable
 
 - `PLAYWRIGHT`
   - difficulty
@@ -246,9 +234,3 @@ Growth:
   - **Action**: Conducted a private 1-on-1 chat to explain the downstream impact on the team's velocity and the QA process.
   - **Result**: Improved developer accountability and pipeline health.
 
-**Career Progression Summary**
-
-- **2014 – 2017 (QA)**: Foundational software testing and automation.
-- **2017 – 2022 (QA Lead)**: Oversaw 3 dev teams; managed Jenkinsfiles; led Selenium/Playwright initiatives; hired and mentored QA Co-ops.
-- **2024 (Automation Team)**: Focused on high-level reliability (PagerDuty), DB synchronization, and device team Jenkins integrations. Implemented DORA metrics in Domo.
-- **2025 (Platform Engineering)**: Transitioned into full-scale platform stability and developer experience.

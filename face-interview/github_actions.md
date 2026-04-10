@@ -72,6 +72,3 @@ You can define specific patterns to control which tags trigger your workflow.
         - '*-alpha' # Ignores tags ending in '-alpha'
   ```
 
-These guides detail how to trigger GitHub Actions using Git tags and relevant workflow configurations:
-
-**Important Note:** If you define *only* `tags`, the workflow will **not** run on regular branch pushes. To trigger on both, you must explicitly list both `branches` and `tags`. Additionally, if a workflow step creates a tag using the default `GITHUB_TOKEN`, it will **not** trigger subsequent workflows to prevent infinite loops; use a [Personal Access Token (PAT)](https://github.com/orgs/community/discussions/25617) if you need to chain them.
