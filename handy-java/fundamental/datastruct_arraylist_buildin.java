@@ -1,9 +1,20 @@
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Stream;
 
 public class datastruct_arraylist_buildin {
     public static void main(String[] args) {
+        Method[] methods = ArrayList.class.getDeclaredMethods();
+
+        System.out.println("Unique ArrayList Methods");
+        Stream.of(methods)
+              .map(Method::getName)
+              .distinct()
+              .sorted()
+              .forEach(System.out::println);
+       
         ArrayList<String> skills = new ArrayList<>();
         skills.ensureCapacity(10); // reserve internal capacity: O(1) amortized
 

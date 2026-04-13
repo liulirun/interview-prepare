@@ -1,7 +1,20 @@
+import java.lang.reflect.Method;
 import java.util.Arrays;
+import java.util.stream.Stream;
 
 public class datastruct_array_buildin {
     public static void main(String[] args) {
+
+        // 1. Get all methods declared in the Arrays class
+        Method[] methods = Arrays.class.getDeclaredMethods();
+        System.out.println("Unique Array Methods");
+        // 2. Use a Stream to process the method names
+        Stream.of(methods)
+              .map(Method::getName)  // Extract just the name String
+              .distinct()            // Remove duplicate names (overloads)
+              .sorted()              // Put them in alphabetical order
+              .forEach(System.out::println); // Print each one
+
         int[] numbers = {5, 2, 9, 1, 2};
         System.out.println("original: " + Arrays.toString(numbers));
 
@@ -42,7 +55,7 @@ public class datastruct_array_buildin {
         System.out.println("equals: " + Arrays.equals(sortable, sameAsSortable));
         System.out.println("mismatch index: " + Arrays.mismatch(sortable, sameAsSortable));
         System.out.println("compare result: " + Arrays.compare(sortable, sameAsSortable));
-
+        
         // stream sum example: O(n)
         int sum = Arrays.stream(numbers).sum();
         System.out.println("sum via stream: " + sum);
