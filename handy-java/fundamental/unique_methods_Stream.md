@@ -5,12 +5,12 @@
 | From                 | Example                   | When to use this                                    | Protip                                                                       |
 | -------------------- | ------------------------- | --------------------------------------------------- | ---------------------------------------------------------------------------- |
 | **Individual Items** | `Stream.of("A", "B")`     | When you have a few loose variables to process.     | Great for creating a quick, temporary stream without a container.            |
+| **Primitive Array**  | `IntStream.of(nums)`      | When working with `int[]`, `long[]`, or `double[]`. | Use specialized streams (`IntStream`) to avoid the "boxing" performance hit. |
 | **Numeric Range**    | `IntStream.range(0, 10)`  | For loops or generating a sequence of numbers.      | `range` is exclusive (0-9), while `rangeClosed` is inclusive (0-10).         |
 | **Empty Source**     | `Stream.empty()`          | To avoid returning `null` from a method.            | Returning an empty stream prevents `NullPointerExceptions` in the caller.    |
 | **ArrayList / Set**  | `list.stream()`           | The standard way to filter or map any Collection.   | Use `parallelStream()` if the list is massive and tasks are independent.     |
 | **Map**              | `map.entrySet().stream()` | When you need to process both keys and values.      | You can also use `map.keySet().stream()` if you only need the keys.          |
 | **Object Array**     | `Arrays.stream(fruits)`   | When you have a `String[]` or `Integer[]` array.    | This is the most efficient way to start processing existing array data.      |
-| **Primitive Array**  | `IntStream.of(nums)`      | When working with `int[]`, `long[]`, or `double[]`. | Use specialized streams (`IntStream`) to avoid the "boxing" performance hit. |
 | **File / IO**        | `Files.lines(path)`       | When reading a text file line-by-line.              | This is "lazy"—it doesn't load the whole file into memory at once.           |
 
 ## Table 2: Stream `-->` Data Types
