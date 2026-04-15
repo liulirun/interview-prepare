@@ -1,30 +1,30 @@
 # Unique Stream Methods
 
-## Table 1: data `-->` Java Stream
+## Table 1: Data `-->` Java Stream
 
 | From                 | Example                   | When to use this                                    | Protip                                                                       |
 | -------------------- | ------------------------- | --------------------------------------------------- | ---------------------------------------------------------------------------- |
+| **Individual Items** | `Stream.of("A", "B")`     | When you have a few loose variables to process.     | Great for creating a quick, temporary stream without a container.            |
+| **Numeric Range**    | `IntStream.range(0, 10)`  | For loops or generating a sequence of numbers.      | `range` is exclusive (0-9), while `rangeClosed` is inclusive (0-10).         |
+| **Empty Source**     | `Stream.empty()`          | To avoid returning `null` from a method.            | Returning an empty stream prevents `NullPointerExceptions` in the caller.    |
+| **ArrayList / Set**  | `list.stream()`           | The standard way to filter or map any Collection.   | Use `parallelStream()` if the list is massive and tasks are independent.     |
+| **Map**              | `map.entrySet().stream()` | When you need to process both keys and values.      | You can also use `map.keySet().stream()` if you only need the keys.          |
 | **Object Array**     | `Arrays.stream(fruits)`   | When you have a `String[]` or `Integer[]` array.    | This is the most efficient way to start processing existing array data.      |
 | **Primitive Array**  | `IntStream.of(nums)`      | When working with `int[]`, `long[]`, or `double[]`. | Use specialized streams (`IntStream`) to avoid the "boxing" performance hit. |
-| **ArrayList / Set**  | `list.stream()`           | The standard way to filter or map any Collection.   | Use `parallelStream()` if the list is massive and tasks are independent.     |
-| **Individual Items** | `Stream.of("A", "B")`     | When you have a few loose variables to process.     | Great for creating a quick, temporary stream without a container.            |
-| **Map**              | `map.entrySet().stream()` | When you need to process both keys and values.      | You can also use `map.keySet().stream()` if you only need the keys.          |
-| **Numeric Range**    | `IntStream.range(0, 10)`  | For loops or generating a sequence of numbers.      | `range` is exclusive (0-9), while `rangeClosed` is inclusive (0-10).         |
 | **File / IO**        | `Files.lines(path)`       | When reading a text file line-by-line.              | This is "lazy"—it doesn't load the whole file into memory at once.           |
-| **Empty Source**     | `Stream.empty()`          | To avoid returning `null` from a method.            | Returning an empty stream prevents `NullPointerExceptions` in the caller.    |
 
 ## Table 2: Stream `-->` Data Types
 
-| To                  | Example                                      | When to use this                                                         | Protip                                                                                  |
-| ------------------- | -------------------------------------------- | ------------------------------------------------------------------------ | --------------------------------------------------------------------------------------- |
-| **List**            | `.collect(Collectors.toList())`              | The most common way to save results to an `ArrayList`.                   | Since Java 16, you can use `.toList()` directly for an unmodifiable list.               |
-| **Set**             | `.collect(Collectors.toSet())`               | When you need to remove duplicates from your results.                    | Order is not guaranteed unless you collect specifically to a `LinkedHashSet`.           |
-| **Array**           | `.toArray(String[]::new)`                    | When you need to pass results to legacy APIs or fixed-length structures. | Use the "constructor reference" (e.g., `String[]::new`) to get the correct type.        |
-| **Map**             | `.collect(Collectors.toMap(k -> k, v -> v))` | When converting a stream of objects into a Key-Value lookup.             | You must handle duplicate keys, or the collector will throw an `IllegalStateException`. |
-| **Single String**   | `.collect(Collectors.joining(", "))`         | When you want to turn a stream of text into one formatted String.        | It can take a delimiter, prefix, and suffix (e.g., `[A, B, C]`).                        |
-| **Numeric Value**   | `.count()` or `.sum()`                       | When you just need a single calculation (total items, total price).      | For non-numeric streams, use `.reduce()` or `Collectors.summingInt()`.                  |
-| **Optional Object** | `.findFirst()` or `.max()`                   | When you need a single result that might not exist.                      | Always use `.orElse()` or `.ifPresent()` to handle the case where the stream is empty.  |
-| **Grouping/Map**    | `.collect(Collectors.groupingBy(...))`       | To categorize items into a Map of Lists (e.g., grouping users by city).  | This is basically the "SQL GROUP BY" equivalent for Java collections.                   |
+| To                  | Example                                | When to use this                                            | Protip                                                                    |
+| ------------------- | -------------------------------------- | ----------------------------------------------------------- | ------------------------------------------------------------------------- |
+| **List**            | `.collect(Collectors.toList())`        | The most common way to save results to an `ArrayList`.      | Since Java 16, you can use `.toList()` directly for an unmodifiable list. |
+| **Set**             | `.collect(Collectors.toSet())`         | When you need to remove duplicates from your results.       | Order is not guaranteed unless you collect to a `LinkedHashSet`.          |
+| **Map**             | `.collect(Collectors.toMap(...))`      | Converting a stream of objects into a Key-Value lookup.     | You must handle duplicate keys or it throws an `IllegalStateException`.   |
+| **Grouping/Map**    | `.collect(Collectors.groupingBy(...))` | To categorize items into a Map of Lists.                    | This is basically the "SQL GROUP BY" equivalent for Java collections.     |
+| **Single String**   | `.collect(Collectors.joining(", "))`   | To turn a stream of text into one formatted String.         | It can take a delimiter, prefix, and suffix (e.g., `[A, B, C]`).          |
+| **Array**           | `.toArray(String[]::new)`              | When you need results in legacy or fixed-length structures. | Use the "constructor reference" to ensure the correct array type.         |
+| **Numeric Value**   | `.count()` or `.sum()`                 | When you just need a single calculation (total items).      | For non-numeric streams, use `.reduce()` or `Collectors.summingInt()`.    |
+| **Optional Object** | `.findFirst()` or `.max()`             | When you need a single result that might not exist.         | Use `.orElse()` to handle cases where the stream is empty.                |
 
 ## Table 2: Frequent & Intermediate Operations
 

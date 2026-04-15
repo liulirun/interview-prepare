@@ -1,30 +1,30 @@
 # Unique Collections Methods
 
-## Table 1: data `-->` Collections
+## Table 1: Data `-->` Collections
 
-| From                   | Example                              | When to use this                                                                  | Protip                                                                                     |
-| ---------------------- | ------------------------------------ | --------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
-| **Array**              | `Arrays.asList(arr)`                 | Quickly turning an array into a List for searching/sorting.                       | This creates a **fixed-size** list; you can't `.add()` to it, but you can `.set()` values. |
-| **Loose Items**        | `List.of(1, 2, 3)`                   | Modern initialization of a small, constant set of data.                           | These are **immutable**; wrap in `new ArrayList<>(...)` if you need to modify them later.  |
-| **Existing Map**       | `Collections.newSetFromMap(map)`     | When you need a Set that behaves like a specific Map (e.g., `ConcurrentHashMap`). | This is a great way to create a high-performance thread-safe Set.                          |
-| **Thread-Unsafe List** | `Collections.synchronizedList(list)` | When multiple threads need to access the same list.                               | Use this for legacy code; for modern high-concurrency, use `CopyOnWriteArrayList` instead. |
-| **Mutable List**       | `Collections.unmodifiableList(list)` | To "lock" a list before passing it to another method or API.                      | If you change the **original** list, the "unmodifiable" view will also change!             |
-| **Enumeration**        | `Collections.list(enumeration)`      | Converting old legacy types (like `Vector` or `Header` enums) to modern Lists.    | This is an essential bridge for working with very old Java libraries or network APIs.      |
-| **A Single Object**    | `Collections.singletonList(obj)`     | When an API requires a `List` but you only have one single item.                  | This is much more memory-efficient than creating a full `ArrayList` for just one thing.    |
-| **Nothing**            | `Collections.emptyList()`            | To return a "safe" empty result instead of returning `null`.                      | This returns a shared, cached object, saving memory compared to `new ArrayList<>()`.       |
+| From                   | Example                              | When to use this                                          | Protip                                                                              |
+| ---------------------- | ------------------------------------ | --------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| **Loose Items**        | `List.of(1, 2, 3)`                   | Modern initialization of a small, constant set of data.   | These are **immutable**; wrap in `new ArrayList<>(...)` if you need to modify them. |
+| **A Single Object**    | `Collections.singletonList(obj)`     | When an API requires a `List` but you only have one item. | Much more memory-efficient than creating a full `ArrayList` for one item.           |
+| **Nothing**            | `Collections.emptyList()`            | To return a "safe" empty result instead of `null`.        | Returns a shared, cached object, saving memory compared to `new ArrayList<>()`.     |
+| **Array**              | `Arrays.asList(arr)`                 | Turning an array into a List for searching/sorting.       | Creates a **fixed-size** list; you can't `.add()`, but you can `.set()` values.     |
+| **Enumeration**        | `Collections.list(enum)`             | Converting legacy types (like `Vector`) to modern Lists.  | Essential bridge for working with very old Java libraries or network APIs.          |
+| **Mutable List**       | `Collections.unmodifiableList(list)` | To "lock" a list before passing it to another API.        | If you change the **original** list, this view will also change!                    |
+| **Thread-Unsafe List** | `Collections.synchronizedList(list)` | When multiple threads need to access the same list.       | For modern high-concurrency, use `CopyOnWriteArrayList` instead.                    |
+| **Existing Map**       | `Collections.newSetFromMap(map)`     | Creating a Set that behaves like a specific Map.          | Great way to create a high-performance thread-safe Set from a `ConcurrentHashMap`.  |
 
 ## Table 2: Collections `-->` Data Types
 
-| To                | Example                                        | When to use this                                                                | Protip                                                                                                       |
-| ----------------- | ---------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ |
-| **Array**         | `list.toArray(new String[0])`                  | When you need to pass data to legacy APIs or fixed-length structures.           | Passing `new String[0]` is modern practice; the JVM handles the sizing more efficiently than pre-allocating. |
-| **Single Value**  | `Collections.max(list)`                        | Finding the "best," highest, or latest item in a collection.                    | For custom objects, provide a `Comparator` to define what "maximum" actually means.                          |
-| **Stream**        | `list.stream()`                                | The entry point for filtering, mapping, or any functional processing.           | Use `.parallelStream()` for large collections to leverage multi-core processors.                             |
-| **Map**           | `list.stream().collect(Collectors.toMap(...))` | When your list items have IDs and you want a searchable lookup table.           | Ensure IDs are unique, or use a "merge function" to handle key collisions.                                   |
-| **Enumeration**   | `Collections.enumeration(list)`                | When you must interface with ancient legacy code that expects an `Enumeration`. | This is effectively the "reverse" of `Collections.list()` for backward compatibility.                        |
-| **String**        | `list.toString()`                              | For logging or debugging the contents of the collection.                        | Standard format is `[item1, item2]`. For custom formatting, use `String.join()` or `Collectors.joining()`.   |
-| **Reversed View** | `Collections.reverse(list)`                    | When you need to flip the order of items in place.                              | This **mutates** the original list. If you need a copy, duplicate the list before reversing.                 |
-| **Checked View**  | `Collections.checkedList(list, String.class)`  | When working with raw types to ensure only specific types are added.            | This throws a `ClassCastException` at runtime the moment an invalid type is inserted.                        |
+| To                | Example                                        | When to use this                                              | Protip                                                                                         |
+| ----------------- | ---------------------------------------------- | ------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| **Array**         | `list.toArray(new String)`                     | When you need to pass data to legacy fixed-length APIs.       | `new String` is modern practice; the JVM sizes it more efficiently than pre-allocating.        |
+| **Stream**        | `list.stream()`                                | The entry point for filtering, mapping, or processing.        | Use `.parallelStream()` for massive collections to leverage multi-core CPUs.                   |
+| **Map**           | `list.stream().collect(Collectors.toMap(...))` | When your items have IDs and you want a lookup table.         | Ensure IDs are unique or use a "merge function" to handle key collisions.                      |
+| **Enumeration**   | `Collections.enumeration(list)`                | To interface with legacy code expecting an `Enumeration`.     | This is the exact "reverse" of `Collections.list()` for backward compatibility.                |
+| **Single Value**  | `Collections.max(list)`                        | Finding the highest or latest item in a collection.           | For custom objects, provide a `Comparator` to define the sort logic.                           |
+| **Reversed View** | `Collections.reverse(list)`                    | When you need to flip the order of items in place.            | This **mutates** the original list. Duplicate the list first if you need to keep the original. |
+| **Checked View**  | `Collections.checkedList(list, String.class)`  | When using raw types to ensure only specific types are added. | Throws a `ClassCastException` the moment an invalid type is inserted at runtime.               |
+| **String**        | `list.toString()`                              | For logging or debugging the contents.                        | Format is `[a, b]`. For custom separators, use `String.join()` or `Collectors.joining()`.      |
 
 
 ## Table 2: Frequent & General Purpose Methods
