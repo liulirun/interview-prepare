@@ -17,22 +17,22 @@ public class try_collections {
       //         .sorted()
       //         .forEach(System.out::println);
 
-        System.out.println("Collections Start");
-        // Q2. Turn a String[] array into a fixed-size List using Arrays.
-        String[] arr = {"Alpha", "Beta"};
-        List<String> fixedList = Arrays.asList(arr);
-        System.out.println(fixedList);
+      System.out.println("Collections Start");
+      // Q2. Turn a String[] array into a fixed-size List using Arrays.
+      String[] arr = {"Alpha", "Beta"};
+      List<String> fixedList = Arrays.asList(arr);
+      System.out.println(fixedList);
 
-        // Q3. Initialize a read-only (unmodifiable) List containing three specific strings.
-        List<String> listImmu = List.of("1", "2", "3");
-        System.out.println(listImmu.getClass().getSimpleName());
-        // Q4. Find the maximum and minimum values in a List of Integers using Collections.
-        System.out.println(Collections.max(Arrays.asList(10, 50, 2, 99)));
+      // Q3. Initialize a read-only (unmodifiable) List containing three specific strings.
+      List<String> listImmu = List.of("1", "2", "3");
+      System.out.println(listImmu.getClass().getSimpleName());
+      // Q4. Find the maximum and minimum values in a List of Integers using Collections.
+      System.out.println(Collections.max(Arrays.asList(10, 50, 2, 99)));
 
-        // Q5. Randomly shuffle the elements of an ArrayList.
-        List<Integer> a = Arrays.asList(10, 50, 2, 99);
-        Collections.shuffle(a);
-        System.out.println(a);
+      // Q5. Randomly shuffle the elements of an ArrayList.
+      List<Integer> a = Arrays.asList(10, 50, 2, 99);
+      Collections.shuffle(a);
+      System.out.println(a);
 // Q6. Create a high-performance Set from an existing ConcurrentHashMap using Collections.
 // Q7. Reverse the order of elements in a List in-place.
 // Q8. Return an empty, immutable List (to avoid returning null in a method).
