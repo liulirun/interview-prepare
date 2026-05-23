@@ -1,4 +1,7 @@
-I want to 10 programming questions:  for array, aim for get familiar with Array build-in functions.   includes answers in code.  also I want to get familiar with how array being converted to other types for conviniece. for any convert, printthe converted type for me to easy understand
+I want to 12 programming questions:  for Stream, aim for get familiar with build-in functions + type conversion.
+1. includes answers in code. 
+2. for any convertion, print the converted type for me to easy understand
+3. also a list of seperate questions, so I can copy paste
 
 ## Question2 : summarize 
 Here are the rules used to structure the markdown tables for the methods and conversions we discussed. You can use these as a template for any future Java classes you study.

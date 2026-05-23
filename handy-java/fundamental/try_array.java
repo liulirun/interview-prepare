@@ -6,23 +6,31 @@ import java.util.Set;
 import java.util.stream.Stream;
 
 public class try_array {
-  public static void main(String[] args){
-    
+  public static void main(String[] args){   
+    //Create Array    
     String[] fruits = {"Apple", "Banana", "Date", "Cherry"};
+    // 2. Array Literal (Best when you know values upfront)
+    int[] byLiteral = {10, 20, 30};
+    // 3. Anonymous / Explicit Initialization (Good for passing to methods)
+    int[] byExplicit = new int[]{1, 2, 3};
+    // 4. Multidimensional (Array of arrays)
+    int[][] matrix = {{1, 2}, {3, 4}};
     String[] fruits2 = Stream.of("Apple", "Banana", "Date", "Cherry").toArray(String[]::new);
-
-    // Arrays.sort sorts alphabetically: Apple, Banana, Cherry, Date
-    Arrays.sort(fruits);
-    System.out.println("1. Sorted Fruits: " + Arrays.toString(fruits));    
+    System.out.println(byLiteral.toString() + byExplicit.toString() + matrix.toString() + fruits2.toString());
     
-    // 2. Fill an Array
+    // 1. Declare size first (elements default to 0, false, or null)
     int[] fills = new int[5];
     Arrays.fill(fills, 10);
     System.out.println("2. Fills Array: " + Arrays.toString(fills)); // [10, 10, 10, 10, 10]
-
-    int[] numbers = {5, 1, 9, 3};
+    
+    // Arrays.sort sorts alphabetically: Apple, Banana, Cherry, Date
+    fruits[0] = "SB";
+    Arrays.sort(fruits);
+    System.out.println("1. Sorted Fruits: " + Arrays.toString(fruits));    
+    
     // 3. Binary Search
-    // Unsorted search results in undefined behavior (often negative or wrong index)
+    int[] numbers = {5, 1, 9, 3};
+    // SORT before search. Unsorted search results in undefined behavior (often negative or wrong index)
     System.out.println("3. Search Unsorted: " + Arrays.binarySearch(numbers, 3)); 
     Arrays.sort(numbers); // numbers is now [1, 3, 5, 9]
     System.out.println("3. Search Sorted (index of 3): " + Arrays.binarySearch(numbers, 3)); // 1

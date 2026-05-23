@@ -1,30 +1,29 @@
 # Unique HashMap Methods
 
+## Table 1: Data `-->` HashMap
 
-## Table 1: data `-->` HashMap
-
-| From                 | Example                                                                           | When to use this                                             | Protip                                                                                      |
-| -------------------- | --------------------------------------------------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------------------------------------- |
-| **Loose Pairs**      | `Map.of("K1", "V1", "K2", "V2")`                                                  | Quick, small lookups (up to 10 pairs).                       | `Map.of` creates an **immutable** map; wrap it in `new HashMap<>(...)` to edit it.          |
-| **Two Lists/Arrays** | `IntStream.range(0, keys.size()).collect(Collectors.toMap(keys::get, vals::get))` | When you have one list of keys and another of values.        | Ensure both lists are the same length to avoid an `IndexOutOfBoundsException`.              |
-| **Another Map**      | `new HashMap<>(oldMap)`                                                           | Creating a "shallow copy" of an existing map.                | Changes to the *structure* won't affect the old map, but changes to *objects* inside will.  |
-| **A List/Stream**    | `list.stream().collect(Collectors.toMap(Obj::getId, Obj::getVal))`                | Converting a list of objects into a searchable lookup table. | If keys might repeat, use the 3-argument version: `(old, new) -> new` to handle collisions. |
-| **JSON String**      | `new ObjectMapper().readValue(json, HashMap.class)`                               | When receiving data from a Web API or config file.           | Requires the **Jackson** or **Gson** library; standard Java doesn't do this natively.       |
-| **Properties File**  | `new HashMap<Object, Object>(propertiesObj)`                                      | Loading configuration settings into a searchable map.        | Use `map.putAll(properties)` for an existing map to merge settings.                         |
-| **CSV / File**       | `Files.lines(p).map(s->s.split(",")).collect(Collectors.toMap(a->a[0], a->a[1]))` | Parsing a simple 2-column text file into memory.             | Always check if the line has the expected number of commas before splitting.                |
+| From                 | Example                                         | When to use this                                      | Protip                                                                                     |
+| -------------------- | ----------------------------------------------- | ----------------------------------------------------- | ------------------------------------------------------------------------------------------ |
+| **Loose Pairs**      | `Map.of("K1", "V1")`                            | Quick, small lookups (up to 10 pairs).                | Creates an **immutable** map; wrap in `new HashMap<>(...)` if you need to edit it.         |
+| **Another Map**      | `new HashMap<>(oldMap)`                         | Creating a "shallow copy" of an existing map.         | Structural changes won't affect the old map, but changes to *objects* inside will.         |
+| **Properties File**  | `new HashMap<Object, Object>(props)`            | Loading config settings into a searchable map.        | Use `map.putAll(properties)` on an existing map to merge multiple sources.                 |
+| **A List/Stream**    | `list.stream().collect(Collectors.toMap(...))`  | Turning a list of objects into a lookup table.        | If keys might repeat, use the 3-argument version `(old, new) -> new` to handle collisions. |
+| **Two Lists/Arrays** | `IntStream.range(0, size).collect(...)`         | When you have one list of keys and another of values. | Ensure both lists are the same length to avoid `IndexOutOfBoundsException`.                |
+| **CSV / File**       | `Files.lines(p).collect(Collectors.toMap(...))` | Parsing a simple 2-column text file into memory.      | Always validate the split length before collecting to avoid `ArrayIndexOutOfBounds`.       |
+| **JSON String**      | `mapper.readValue(json, HashMap.class)`         | Receiving data from a Web API or config file.         | Requires **Jackson** or **Gson**; Java doesn't parse JSON natively.                        |
 
 ## Table 2: HashMap `-->` Data Types
 
-| To                   | Example                                      | When to use this                                                 | Protip                                                                            |
-| -------------------- | -------------------------------------------- | ---------------------------------------------------------------- | --------------------------------------------------------------------------------- |
-| **List of Keys**     | `new ArrayList<>(map.keySet())`              | When you only need the unique identifiers from the map.          | This is great for getting a "directory" of all items available.                   |
-| **List of Values**   | `new ArrayList<>(map.values())`              | When you need the actual data objects, ignoring the keys.        | The order of this list will match the map's internal iteration order.             |
-| **Stream (Entries)** | `map.entrySet().stream()`                    | To filter, sort, or transform the map using functional logic.    | Mapping to `entry.getKey()` or `entry.getValue()` lets you pivot the data easily. |
-| **JSON String**      | `new ObjectMapper().writeValueAsString(map)` | Sending data back to a Web UI or saving it to a database.        | Use Jackson or Gson to handle complex nested objects automatically.               |
-| **String (Pretty)**  | `map.toString()`                             | Quick debugging or logging to see what's inside.                 | For large maps, this can be hard to read; consider a loop for better formatting.  |
-| **Properties**       | `props.putAll(map)`                          | Exporting a map of settings back into a `.properties` file.      | Keys and values should ideally be `String` types for compatibility.               |
-| **Single Value**     | `map.getOrDefault(key, "Default")`           | Safely retrieving one item without checking for `null`.          | Use this to avoid `NullPointerExceptions` when a key might be missing.            |
-| **Sorted Map**       | `new TreeMap<>(map)`                         | When you need the keys to be in alphabetical or numerical order. | Note that `TreeMap` is slower for inserts but keeps everything sorted.            |
+| To                   | Example                            | When to use this                                      | Protip                                                                        |
+| -------------------- | ---------------------------------- | ----------------------------------------------------- | ----------------------------------------------------------------------------- |
+| **List of Keys**     | `new ArrayList<>(map.keySet())`    | When you only need the unique identifiers.            | Perfect for creating a "directory" or index of available data.                |
+| **List of Values**   | `new ArrayList<>(map.values())`    | When you need the data objects, ignoring the keys.    | The list order matches the map's internal iteration order (usually random).   |
+| **Sorted Map**       | `new TreeMap<>(map)`               | When keys must be in alphabetical or numerical order. | Note that `TreeMap` is slower for inserts but keeps everything sorted.        |
+| **Stream (Entries)** | `map.entrySet().stream()`          | To filter, sort, or transform map logic.              | Mapping to `entry.getKey()` or `entry.getValue()` lets you pivot data easily. |
+| **Single Value**     | `map.getOrDefault(key, "Default")` | Safely retrieving one item without `null` checks.     | Use this to prevent `NullPointerExceptions` when a key might be missing.      |
+| **JSON String**      | `mapper.writeValueAsString(map)`   | Sending data to a Web UI or saving to a database.     | Handles complex nested objects automatically if using Jackson or Gson.        |
+| **Properties**       | `props.putAll(map)`                | Exporting settings back into a `.properties` file.    | Keys and values should be `String` types for the best compatibility.          |
+| **String (Debug)**   | `map.toString()`                   | Quick debugging to see what's inside.                 | Hard to read for large maps; use a `forEach` loop for "pretty" printing.      |
 
 ## Table 2: Frequent & Public API Methods
 
