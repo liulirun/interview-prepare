@@ -3,16 +3,9 @@
   "configurations": [
     {
       "type": "java",
-      "name": "quicktest",
+      "name": "Main",
       "request": "launch",
-      "mainClass": "quicktest",
-      "projectName": "handy-java_1bc54cdb"
-    },
-    {
-      "type": "java",
-      "name": "try",
-      "request": "launch",
-      "mainClass": "try",
+      "mainClass": "Main",
       "projectName": "handy-java_1bc54cdb"
     },
     {
