@@ -2,6 +2,20 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "type": "java",
+      "name": "quicktest",
+      "request": "launch",
+      "mainClass": "quicktest",
+      "projectName": "handy-java_1bc54cdb"
+    },
+    {
+      "type": "java",
+      "name": "try",
+      "request": "launch",
+      "mainClass": "try",
+      "projectName": "handy-java_1bc54cdb"
+    },
+    {
       "name": "Java: Debug Current File (F5)",
       "type": "java",
       "request": "launch",
