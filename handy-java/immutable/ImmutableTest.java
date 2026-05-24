@@ -15,8 +15,6 @@ public class ImmutableTest {
     }
 }
 
-// 2. REMOVED "public" and the duplicate package/import headers.
-// This class is now package-private, allowing it to coexist in the same file.
 final class UserUseLocalDate {
     private final String username;
     private final LocalDate registrationDate; 

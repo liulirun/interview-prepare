@@ -50,6 +50,8 @@ System.out.println(unmodifiable.size());
 ```java
 public final class AppConfig {
     public static final String[] ALLOWED_ROLES = {"Admin", "User"};
+    // below will break it. I do not do RE-ASSIGN, but change the value of content
+    AppConfig.ALLOWED_ROLES[1] = "Hacker";
 }
 ```
 * **The Wrong Answer:** Yes, because it is `public static final`, making it a global, unchangeable constant.
