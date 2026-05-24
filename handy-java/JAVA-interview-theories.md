@@ -93,11 +93,6 @@ class AWSStorage implements CloudStorage {
 }
 ```
 
-
-
-Would you like to combine these sections into a **comprehensive interview markdown file**, or would you like to review how **Composition over Inheritance** modifies standard OOP architectures?
-
-
 Part 1: Detailed SOLID Principles Breakdown
 
 1\. Single Responsibility Principle (SRP)
