@@ -1,5 +1,5 @@
 
-## **Abstract classes** and **interfaces**
+## **Abstract classes** VS **interfaces**
 **Abstract classes** and **interfaces** are both used to achieve abstraction in Java, but they serve different design purposes. *An abstract class defines *what an object is*, while an interface defines *what an object can do* .
 
 ### Core Differences

@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "programming-Java/Modifiers.md",
+                "file": "programming-Java/JAVA-Patterns.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Modifiers"
+              "title": "JAVA-Patterns"
             }
           }
         ]
@@ -185,6 +185,16 @@
   },
   "active": "66aba3f826850fb0",
   "lastOpenFiles": [
+    "Untitled.canvas",
+    "programming-Java/easier-reading-from-AI.md",
+    "programming-Java/AI-promotes.md",
+    "programming-Java/JAVA-frequent-questions.md",
+    "programming-Java/JAVA-Patterns.md",
+    "programming-Java/JAVA-OOP.md",
+    "programming-Java/JAVA-ModifiersOOP.md",
+    "programming-Java/JAVA-Modifiers.md",
+    "programming-Java/Modifiers.md",
+    "programming-Java/OOP.md",
     "behaviour-answers/AI-prompt.md",
     "programming-github_actions.md",
     "programming-leetcode/quiz.md",
@@ -212,16 +222,6 @@
     "programming-typescript/TypeScript Classes.png",
     "programming-typescript",
     "programming-Java/frequent-asked-questions.md",
-    "programming-Java/Modifiers.md",
-    "programming-Java/reading.md",
-    "programming-Java/OOP.md",
-    "test-plan.md",
-    "Javascript.md",
-    "AI-questions.md",
-    "CICD-pipeline.md",
-    "BigO-breakdown.md",
-    "behaviour.md",
-    "playwright.md",
     "TS/TypeScript Classes.png",
     "terraform-hands_on.pdf"
   ]

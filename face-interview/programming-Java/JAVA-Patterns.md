@@ -1,15 +1,3 @@
-## Veeva possible questions
-Technical interview, only focus on automation/coding skills etc. 
-
-write a function to check if the parentheses in a string are well formed.
-
-difference between abstract classes and interfaces, then the difference between reference and value, then what static classes vs. singleton classes were. 
-
-Questions Threads Concurrent HashMap Java Basics - Coding round Topological sort related questions.
- LinkedList.
-
- Related to strings, counting characters etc.
-
 ## JAVA Pattens
 In Selenium automation with Java, design patterns are crucial for creating maintainable, scalable, and readable test frameworks. The most common patterns used include *structural patterns like the Page Object Model and creational patterns like Factory and Singleton*.
 

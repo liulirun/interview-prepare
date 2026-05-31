@@ -146,8 +146,6 @@ Usage Guidelines
 | **Subclass Customization** | ❌    | Child classes cannot see or override private members, breaking features intended for inheritance.       |
 | **Global Data Sharing**    | ❌    | Cannot be used for data that unrelated external classes need to read or write directly.                 |
 
-Would you like to move on to **Java Memory Management** (Stack vs. Heap) using this same format, or do you want to cover **Exception Handling** (`throw` vs. `throws`) next?
-
 ## default (Package-Private)
 
 **`default`** (no modifier keyword explicitly typed) restricts visibility strictly to classes within the **same package**.
@@ -165,5 +163,3 @@ Usage Guidelines
 | **Component Bundles**           | ✔️   | Ideal for internal framework modules where a group of files work together but should stay hidden from the final user.     |
 | **Subclassing Across Packages** | ❌    | Subclasses in different packages cannot see default members, breaking inheritance across package boundaries.              |
 | **Public API Design**           | ❌    | External applications importing your JAR cannot access package-private features, rendering them useless for public tools. |
-
-Would you like to move on to **Java Memory Management** (Stack vs. Heap) using this same format, or do you want to cover **Exception Handling** (`throw` vs. `throws`) next?
