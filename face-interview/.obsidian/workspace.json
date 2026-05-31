@@ -185,6 +185,9 @@
   },
   "active": "66aba3f826850fb0",
   "lastOpenFiles": [
+    "programming-leetcode/quiz.md",
+    "programming-leetcode/plan.md",
+    "programming-leetcode",
     "programming-typescript/programming-TypeScript.md",
     "programming-Java/programming-java-Patterns.md",
     "experience/kobo-timeline.md",
@@ -220,8 +223,6 @@
     "java-Patterns.md",
     "TS/TypeScript Classes.png",
     "terraform-arch-remote-state.md",
-    "terraform.md",
-    "shift-left.md",
     "terraform-hands_on.pdf"
   ]
 }
