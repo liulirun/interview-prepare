@@ -96,11 +96,57 @@ Arch: Killbill. Codebase java. We only updated plugin by contractor. Argument is
 
 - `Stakeholder management`: example of you working with other teams that are very demanding or uncooperative, how do you manage their expectations or turn them around to work well with your team
 
-## Bugs
+## Praud Bugs
 1. Automation: DB profiler for integration ( admin, modify at same time)
 2. Library: Maria ( many books), set up alert
-3. Purchasing/Library relies on search
+3. KILO: Purchasing/Library relies on search
 
+## Issues with your manager && Feedback
+
+```
+my previous manager chase for speed, so he asked me to do things fast. That carries some maintain work when new manager comes in.  new manager says the code quality is not good enough
+```
+### Case 1: dbSync edge cases
+💡 Situation (15% of time) — Keep it objective
+In my previous role, our team underwent a leadership transition. 
+Under my first manager, our primary objective was `rapid, solving prolems`. we were explicitly directed to prioritize `speed over perfect architecture`, which naturally introduced some `technical debt`. 
+A few months later, a new engineering manager took over. During their initial code reviews, they noted that our `code quality and test coverage` didn't meet their long-term architectural standards."
+
+💡 Task (10% of time) — Define the challenge
+"I needed to avoid becoming defensive about code written under different constraints, 
+brfore 1:1 meeting, I needed to establish a clear, actionable plan to elevate our codebase to meet the new manager's expectations"
+
+💡 Action (60% of time) — Show your maturity and engineering process
+Step 2: Quantified the Debt. "I took the initiative to audit the specific modules the manager flagged. created a prioritized backlog of our technical debt, categorizing them by risk level (High, Medium, Low impact on stability)."
+Step 1: Embraced the Feedback. "Instead of justifying the old code or pointing fingers at past leadership, I scheduled a 1-on-1 with my new manager. I explicitly validated their concerns and agreed that for the application to handle edge cases, we needed to address the accumulated technical debt."
+Step 3: Proposed a Pragmatic Compromise. "I knew we couldn't just stop building new features. I proposed a 'Tax System' to my new manager: we would dedicate 20% of every upcoming sprint"
+Step 4: Executed and Documented. "I took ownership of the first major refactoring task. As I cleaned up the code, I documented our new architectural patterns could follow the new manager's standards consistently moving forward."
+💡 Result (15% of time) — The quantifiable happy ending
+"The outcome was incredibly positive.
+1. Within 1 month, I have covered all edge cases + add unit tests 
+2. More importantly, this proactive approach built an immediate foundation of `trust and mutual respect` with my new manager, proving that I could adapt quickly to changing business priorities while maintaining accountability for engineering quality."
+
+
+### Case 2: Navigating a Flawed "Performance Feedback Loop"
+In an interview, you want to position this story as an example of problem-solving, handling cross-functional conflict, and improving broken processes, rather than just complaining about a bad coworker or a past manager.
+```
+developer changed token for iOS DORA, so project output delayed
+```
+🌟 STAR Interview Script: The Flawed Feedback Loop
+Situation (The Hook)
+"In my previous role, I completed a high-priority project right on schedule. However, just as we went to launch, a developer in another department changed our integration tokens without notifying my team. Because there was no notification system, this unannounced change silently broke our entire output pipeline, making the project deliverables appear late to stakeholders and triggering a flawed performance feedback loop."
+Task (The Goal)
+"I had to diagnose and fix the broken system to deliver the project as quickly as possible. 
+Second, I needed to manage up to my stakeholders to clarify the root cause of the delay."
+
+Action (What You Did)
+*"I took a proactive, three-step approach to resolve this:
+Technical Resolution: I immediately audited the system logs, identified the unauthorized token change, and executed a hot-fix to realign our system configurations and restore the output.
+Cross-Functional Communication: I reached out to the external developer. Instead of assigning blame, I took a 'no-fault' approach, asking about the technical driver behind their change and establishing a mandatory agreement to coordinate before future updates.
+Process Safeguards: I corrected the systemic flaw by restricting token write-access to my core team and setting up automated Slack alerts to instantly flag any configuration changes."*
+Result (The Impact)
+"As a result, we successfully restored the pipeline and deployed the project. More importantly, by presenting my manager with the hard data and timeline logs, I successfully reframed the delay from an 'execution failure' to a 'process gap.' 
+My manager completely understood, adopted my new token access policy as a standard operating procedure across both departments."
 
 ## Disagree with manager
 ### Hiring QA co-op.

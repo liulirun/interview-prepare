@@ -1,0 +1,6 @@
+JAVA interview,  explain `static`, answer should be short, in markdown format so I can copy paste later. no external links
+use sections , includes a sub-section contains a table when should I use it when I should not use it. should using icon check mark.  should not using wrong checkmark, easier to view this later
+markdown format rules. 
+1. Visual Cleanup (Removing Redundancy)What you did: You removed the words "Use It" and "Do NOT Use" from the "Rule" column.Why it works: The ✔️ and ❌ icons already communicate "yes" or "no" perfectly. Removing the text eliminates visual clutter and lets the interviewer or reader instantly scan the table.
+2. Flat Hierarchy (Flatter Structure)What you did: You removed the nested sub-headers (like ### Core Concept) and turned them into standard text dividers or simple list headers.Why it works: It prevents your markdown file from having too many deep levels of nesting. This makes it much easier to copy, paste, and read in a single glance.
+3. Maximum PunchinessWhat you did: You stripped away the introductory filler sentences and jumped straight into the definitions.Why it works: In an interview context, you need to find facts in milliseconds. Your version functions as a high-density cheat sheet.

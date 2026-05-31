@@ -18,7 +18,7 @@
   - Not practical. End up with rewrite everything and migrate on the fly.
 
 #### Team Work
-- `Team work`: answer questions + early PR review + document
+- `Team work`: answer questions + early PR review + document + unify env
   - `Focus` coordinate with team, not only your personal contribution.
 - `Communication / influence`: despite initial resistance: `Playwright`
   - `Focus` communication different audiences, POC, design

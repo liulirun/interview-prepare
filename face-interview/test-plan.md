@@ -9,7 +9,7 @@ Strategy `( how - 1 )`
 - automation
 env `( where - 1 )`
 - dev/staging/prod
-roles `( who - 1 )
+roles `( who - 1 )`
 - qa
 - dev
 enter/exit criteria `( when - 1 )`
