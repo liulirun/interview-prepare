@@ -185,6 +185,8 @@
   },
   "active": "66aba3f826850fb0",
   "lastOpenFiles": [
+    "behaviour-answers/AI-prompt.md",
+    "programming-github_actions.md",
     "programming-leetcode/quiz.md",
     "programming-leetcode/plan.md",
     "programming-leetcode",
@@ -220,9 +222,7 @@
     "BigO-breakdown.md",
     "behaviour.md",
     "playwright.md",
-    "java-Patterns.md",
     "TS/TypeScript Classes.png",
-    "terraform-arch-remote-state.md",
     "terraform-hands_on.pdf"
   ]
 }
