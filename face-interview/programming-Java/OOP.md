@@ -1,0 +1,1 @@
+OOP concept + SOLID + simple code

@@ -10,14 +10,14 @@ Core Concept
 
 Usage Guidelines
 
-| Scenario                   | Rule         | Why?                                                                                            |
-| -------------------------- | ------------ | ----------------------------------------------------------------------------------------------- |
-| **Utility/Helper Methods** | ✔️| They process inputs independently without needing object state (e.g., `Math.max()`).            |
-| **Global Constants**       | ✔️ | Combined with `final`, it saves memory by sharing one unchangeable value (e.g., `PI`).          |
-| **Shared Counters**        | ✔️| Tracks data across all instances, like counting the total number of objects created.            |
-| **Unique Object Data**     | ❌ | Variables unique to an instance (like `username` or `balance`) will overwrite each other.       |
-| **Polymorphic Methods**    | ❌ | Static methods belong to the class, meaning they cannot be overridden for runtime polymorphism. |
-| **Temporary Large Data**   | ❌ | Static variables remain in memory for the app's entire lifespan, risking memory leaks.          |
+| Scenario                   | Rule | Why?                                                                                            |
+| -------------------------- | ---- | ----------------------------------------------------------------------------------------------- |
+| **Utility/Helper Methods** | ✔️   | They process inputs independently without needing object state (e.g., `Math.max()`).            |
+| **Global Constants**       | ✔️   | Combined with `final`, it saves memory by sharing one unchangeable value (e.g., `PI`).          |
+| **Shared Counters**        | ✔️   | Tracks data across all instances, like counting the total number of objects created.            |
+| **Unique Object Data**     | ❌    | Variables unique to an instance (like `username` or `balance`) will overwrite each other.       |
+| **Polymorphic Methods**    | ❌    | Static methods belong to the class, meaning they cannot be overridden for runtime polymorphism. |
+| **Temporary Large Data**   | ❌    | Static variables remain in memory for the app's entire lifespan, risking memory leaks.          |
 
 
 ## final
@@ -79,6 +79,15 @@ Usage Guidelines
 | **High-Scale Concurrency** | ❌    | Coarse synchronization reduces throughput; use `java.util.concurrent` locks or atomic variables for better performance. |
 
 # Access Modifiers (Define Visibility)
+
+Access Levels
+
+| Modifier        | Same Class | Same Package | Subclass (Diff Package) | World (Anywhere) |
+| --------------- | ---------- | ------------ | ----------------------- | ---------------- |
+| **`public`**    | ✔️         | ✔️           | ✔️                      | ✔️               |
+| **`protected`** | ✔️         | ✔️           | ✔️                      | ❌                |
+| **`default`**   | ✔️         | ✔️           | ❌                       | ❌                |
+| **`private`**   | ✔️         | ❌            | ❌                       | ❌                |
 
 ## public
 
